@@ -1,8 +1,9 @@
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from tests.loginPageLocators import LoginPageLocators
 from urls import LOGIN_URL
+
+
 class LoginPage:
     def __init__(self, browser, url=LOGIN_URL):
         self.browser = browser
@@ -19,6 +20,3 @@ class LoginPage:
         self.browser.find_element(*self.email_input).send_keys(email)
         self.browser.find_element(*self.password_input).send_keys(password)
         self.browser.find_element(*self.login_button).click()
-
-
-
