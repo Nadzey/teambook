@@ -20,3 +20,5 @@ class LoginPage:
         self.browser.find_element(*self.email_input).send_keys(email)
         self.browser.find_element(*self.password_input).send_keys(password)
         self.browser.find_element(*self.login_button).click()
+        wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.url_contains('planners'))
