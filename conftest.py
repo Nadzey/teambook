@@ -1,5 +1,4 @@
 import pytest
-import time
 import os
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
@@ -20,9 +19,11 @@ def browser():
     driver.save_screenshot(os.path.join(screenshot_dir, screenshot_name))
     driver.quit()
 
+
 @pytest.fixture
 def valid_credentials():
     return "teambooktest@gmail.com", "Test123!"
+
 
 @pytest.fixture(scope="session")
 def urls():
@@ -30,3 +31,18 @@ def urls():
     with open(urls_path) as f:
         urls = [line.strip() for line in f if line.strip()]
     return urls
+
+
+@pytest.fixture
+def invalid_email_credentials():
+    return "teambooktest123@gmail.com", "Test123!"
+
+
+@pytest.fixture
+def invalid_password_credentials():
+    return "teambooktest@gmail.com", "Test321!"
+
+
+@pytest.fixture
+def error_message():
+    return "Wrong email or password!"
