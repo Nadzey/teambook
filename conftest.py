@@ -2,6 +2,8 @@ import pytest
 import os
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
+from pages.login_page import LoginPage
+from urls import LOGIN_URL
 
 
 @pytest.fixture(scope="session")
@@ -20,11 +22,6 @@ def browser():
     driver.quit()
 
 
-@pytest.fixture
-def valid_credentials():
-    return "teambooktest@gmail.com", "Test123!"
-
-
 @pytest.fixture(scope="session")
 def urls():
     urls_path = os.path.join(os.path.dirname(__file__), "urls.py")
@@ -33,16 +30,36 @@ def urls():
     return urls
 
 
-@pytest.fixture
-def invalid_email_credentials():
-    return "teambooktest123@gmail.com", "Test123!"
-
-
-@pytest.fixture
-def invalid_password_credentials():
-    return "teambooktest@gmail.com", "Test321!"
+@pytest.fixture(scope="function")
+def login_page(browser):
+    page = LoginPage(browser, LOGIN_URL)
+    page.load()
+    return page
 
 
 @pytest.fixture
 def error_message():
     return "Wrong email or password!"
+
+
+@pytest.fixture(params=[
+    ("teambooktestgmail.com", "Test123!")
+])
+def invalid_email(request):
+    return request.param
+
+
+@pytest.fixture(params=[
+    ("teambooktest@gmail.com", "Test321!")
+])
+def invalid_password(request):
+    return request.param
+
+
+@pytest.fixture(params=["teambooktest@gmail.com"])
+def valid_email(request):
+    return request.param
+
+@pytest.fixture(params=["Test123!"])
+def valid_password(request):
+    return request.param
