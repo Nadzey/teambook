@@ -21,7 +21,6 @@ def test_valid_login(browser, valid_credentials):
     # logout
     planners_page.logout()
 
-
 def test_invalid_email_login(browser, invalid_email_credentials, error_message):
     # Preconditions
     email, password = invalid_email_credentials
