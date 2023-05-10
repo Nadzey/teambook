@@ -13,6 +13,7 @@ class LoginPage:
         self.login_button = LoginPageLocators.LOGIN_BUTTON
         self.url = url
         self.error_message = LoginPageLocators.ERROR_MESSAGE
+        self.create_organization = LoginPageLocators.CREATE_ORGANIZATION_LINK
 
     def load(self):
         self.browser.get(self.url)
@@ -26,3 +27,6 @@ class LoginPage:
 
     def get_error_message(self):
         return self.browser.find_element(*LoginPageLocators.ERROR_MESSAGE).text
+
+    def create_new_organization(self):
+        self.browser.find_element(*LoginPageLocators.CREATE_ORGANIZATION_LINK).click()
