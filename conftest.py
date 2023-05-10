@@ -10,6 +10,7 @@ from urls import LOGIN_URL
 def browser():
     service = Service('./chromedriver.exe')
     driver = Chrome(service=service)
+    driver.maximize_window()
     screenshot_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "result")
     screenshot_num = 0
     yield driver
@@ -60,6 +61,37 @@ def invalid_password(request):
 def valid_email(request):
     return request.param
 
+
 @pytest.fixture(params=["Test123!"])
 def valid_password(request):
     return request.param
+
+
+@pytest.fixture(params=["teambooktest1@gmail.com"])
+def reg_email(request):
+    return request.param
+
+
+@pytest.fixture(params=["Test123!"])
+def reg_password(request):
+    return request.param
+
+
+@pytest.fixture(params=["John"])
+def first_name(request):
+    return request.param
+
+
+@pytest.fixture(params=["Snow"])
+def last_name(request):
+    return request.param
+
+
+@pytest.fixture(params=["NewTest LLC"])
+def company_name(request):
+    return request.param
+
+
+@pytest.fixture
+def onboarding_header_text():
+    return "GETTING STARTED IN TEAMBOOK"

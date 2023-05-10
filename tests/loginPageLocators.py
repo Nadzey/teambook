@@ -6,3 +6,4 @@ class LoginPageLocators:
     PASSWORD_INPUT = (By.XPATH, "//input[@id=':r1:']")
     LOGIN_BUTTON = (By.ID, "login-button")
     ERROR_MESSAGE = (By.XPATH, "//p[@class='form-error__error-text']")
+    CREATE_ORGANIZATION_LINK = (By.LINK_TEXT, 'Or create new Organization')
