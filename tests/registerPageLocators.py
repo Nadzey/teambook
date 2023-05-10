@@ -10,3 +10,4 @@ class RegisterPageLocators:
     AGREE_CHECKBOX = (By.ID, 'marketing-accept-checkbox')
     CREATE_ORGANIZATION_BUTTON = (By.ID, 'create-account')
     SKIP_P = (By.XPATH, "//p[normalize-space()='Skip']")
+    ERROR_MESSAGE = (By.XPATH, "//p[@class='form-error__error-text']")

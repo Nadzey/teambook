@@ -1,6 +1,8 @@
 from tests.registerPageLocators import RegisterPageLocators
 from urls import REGISTER_URL
 import time
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class RegisterPage:
@@ -14,6 +16,10 @@ class RegisterPage:
         self.agree_checkbox = RegisterPageLocators.AGREE_CHECKBOX
         self.create_organization_button = RegisterPageLocators.CREATE_ORGANIZATION_BUTTON
         self.url = url
+
+    def load(self):
+        self.browser.get(self.url)
+        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.reg_email_input))
 
     def fill_form(self, first_name, last_name, company_name, email, password):
         first_name_input = self.browser.find_element(*RegisterPageLocators.FIRST_NAME_INPUT)
@@ -49,3 +55,7 @@ class RegisterPage:
         skip_p = self.browser.find_element(*RegisterPageLocators.SKIP_P)
         skip_p.click()
         time.sleep(3)
+
+    def get_error_message(self):
+        error_message = self.browser.find_element(*RegisterPageLocators.ERROR_MESSAGE).text
+        return error_message

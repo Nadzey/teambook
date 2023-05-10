@@ -3,6 +3,7 @@ from pages.planners_page import PlannersPage
 import pytest
 
 
+@pytest.mark.login
 def test_valid_login(browser, valid_email, valid_password, login_page):
     # Preconditions
     email, password = valid_email, valid_password
