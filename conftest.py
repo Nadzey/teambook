@@ -43,6 +43,11 @@ def error_message():
     return "Wrong email or password!"
 
 
+@pytest.fixture
+def error_message1():
+    return "An account with this email address already exist. Please use another Email OR login to existing one."
+
+
 @pytest.fixture(params=[
     ("teambooktestgmail.com", "Test123!")
 ])
@@ -67,29 +72,15 @@ def valid_password(request):
     return request.param
 
 
-@pytest.fixture(params=["teambooktest1@gmail.com"])
-def reg_email(request):
-    return request.param
-
-
-@pytest.fixture(params=["Test123!"])
-def reg_password(request):
-    return request.param
-
-
-@pytest.fixture(params=["John"])
-def first_name(request):
-    return request.param
-
-
-@pytest.fixture(params=["Snow"])
-def last_name(request):
-    return request.param
-
-
-@pytest.fixture(params=["NewTest LLC"])
-def company_name(request):
-    return request.param
+@pytest.fixture
+def registration_data():
+    return {
+        "email": "test@example.com",
+        "password": "Test123!",
+        "first_name": "John",
+        "last_name": "Doe",
+        "company_name": "Test test Company",
+    }
 
 
 @pytest.fixture

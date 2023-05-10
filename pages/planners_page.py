@@ -17,7 +17,7 @@ class PlannersPage:
 
     def load(self):
         self.browser.get(self.url)
-        WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.header_logo))
+        WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.open_menu_button))
 
     def is_header_logo_displayed(self):
         return self.browser.find_element(*self.header_logo).is_displayed()
