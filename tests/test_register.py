@@ -1,5 +1,5 @@
 from pages import register_page
-from pages.planners_page import PlannersPage
+from pages.header import Header
 from urls import PLANNERS_URL
 import pytest
 
@@ -16,9 +16,9 @@ def test_create_organization(browser, login_page, registration_data):
     # Expected result
     assert "planners" in browser.current_url
     # logout
-    planners_page = PlannersPage(browser, PLANNERS_URL)
-    planners_page.load()
-    planners_page.logout()
+    header = Header(browser, PLANNERS_URL)
+    header.load()
+    header.logout()
 
 
 def test_create_organization_with_existing_data(browser, login_page, registration_data, error_message1):

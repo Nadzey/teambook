@@ -1,5 +1,5 @@
 from urls import PLANNERS_URL
-from pages.planners_page import PlannersPage
+from pages.header import Header
 import pytest
 
 
@@ -11,12 +11,12 @@ def test_valid_login(browser, valid_email, valid_password, login_page):
     login_page.login(email, password)
     # Expected result
     assert browser.current_url == PLANNERS_URL
-    planners_page = PlannersPage(browser, PLANNERS_URL)
-    planners_page.load()
-    assert planners_page.is_header_logo_displayed()
+    header = Header(browser, PLANNERS_URL)
+    header.load()
+    assert header.is_header_logo_displayed()
 
     # logout
-    planners_page.logout()
+    header.logout()
 
 
 def test_invalid_email_login(browser, invalid_email, login_page, error_message):

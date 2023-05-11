@@ -3,7 +3,7 @@ import os
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
 from pages.login_page import LoginPage
-from urls import LOGIN_URL
+from urls import LOGIN_URL, PLANNERS_URL
 
 
 @pytest.fixture(scope="session")
@@ -34,6 +34,13 @@ def urls():
 @pytest.fixture(scope="function")
 def login_page(browser):
     page = LoginPage(browser, LOGIN_URL)
+    page.load()
+    return page
+
+
+@pytest.fixture(scope="function")
+def header(browser):
+    page = header(browser, PLANNERS_URL)
     page.load()
     return page
 
@@ -86,3 +93,28 @@ def registration_data():
 @pytest.fixture
 def onboarding_header_text():
     return "GETTING STARTED IN TEAMBOOK"
+
+
+@pytest.fixture
+def planning_text():
+    return "Planning"
+
+
+@pytest.fixture
+def actuals_text():
+    return "Actuals"
+
+
+@pytest.fixture
+def dashboard_text():
+    return "Dashboard"
+
+
+@pytest.fixture
+def users_text():
+    return "Users"
+
+
+@pytest.fixture
+def projects_text():
+    return "Projects"
