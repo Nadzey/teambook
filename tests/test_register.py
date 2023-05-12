@@ -16,7 +16,7 @@ def test_create_organization(browser, login_page, registration_data):
     assert "planners" in browser.current_url
     # logout
     header = Header(browser, PLANNERS_URL)
-    header.load()
+    # header.load()
     header.logout()
 
 

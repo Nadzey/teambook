@@ -20,8 +20,8 @@ def test_header_block_links(browser, valid_email, valid_password, login_page, ur
     assert browser.current_url == PLANNERS_URL
 
 
-def verify_elements_present(browser, planning_text, actuals_text, dashboard_text, users_text, projects_text,
-                            user_menu_text):
+def test_elements_present(browser, planning_text, actuals_text, dashboard_text, users_text, projects_text,
+                          user_menu_text):
     # steps
     header = Header(browser, PLANNERS_URL)
     header.verify_elements_present()
@@ -70,7 +70,7 @@ def test_actuals_link_opens(browser):
     assert browser.current_url == ACTUALS_URL
 
 
-def verify_user_menu_links_present(browser, profile_text, my_week_text, organization_text):
+def test_user_menu_links_present(browser, profile_text, my_week_text, organization_text):
     # steps
     header = Header(browser, PLANNERS_URL)
     header.load()
@@ -85,7 +85,7 @@ def verify_user_menu_links_present(browser, profile_text, my_week_text, organiza
 def test_clicking_on_logo_return_to_planner_page(browser):
     # steps
     header = Header(browser, PLANNERS_URL)
-    header.load()
+    # header.load()
     header.click_on_header_logo()
     # Expected result
     assert "planners" in browser.current_url

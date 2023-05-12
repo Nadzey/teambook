@@ -11,7 +11,7 @@ def test_valid_login(browser, valid_email, valid_password, login_page):
     # Expected result
     assert browser.current_url == PLANNERS_URL
     header = Header(browser, PLANNERS_URL)
-    header.load()
+    # header.load()
     assert header.is_header_logo_displayed()
 
     # logout
