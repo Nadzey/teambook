@@ -24,10 +24,13 @@ class Header:
         self.actuals_link = HeaderLocators.ACTUALS_LINK
         self.mui_dialog_close = HeaderLocators.MUI_DIALOG_CLOSE
         self.mui_dialog = HeaderLocators.MUI_DIALOG
+        self.help_menu = HeaderLocators.HELP
+        self.header = HeaderLocators.HEADER
+        self.user_menu = HeaderLocators.USER_MENU
 
     def load(self):
         self.browser.get(self.url)
-        WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.open_menu_button))
+        WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.user_menu))
 
     def is_header_logo_displayed(self):
         return self.browser.find_element(*self.header_logo).is_displayed()
@@ -35,16 +38,20 @@ class Header:
     def click_on_header_logo(self):
         self.browser.find_element(*self.header_logo).click()
 
-    def logout(self):
+    def open_user_menu(self):
         self.browser.find_element(*self.open_menu_button).click()
+
+    def logout(self):
+        self.open_user_menu()
+        time.sleep(3)
         self.browser.find_element(*self.logout_button).click()
 
     def onboarding_header(self):
         return self.browser.find_element(*HeaderLocators.ONBOARDING_HEADER)
 
     def organization_link_open(self):
-        self.browser.find_element(*self.open_menu_button).click()
-        time.sleep(5)
+        self.open_user_menu()
+        time.sleep(3)
         element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.organization_link))
         element.click()
         time.sleep(5)
@@ -52,10 +59,10 @@ class Header:
     def header_links_block(self):
         return self.browser.find_element(*self.header_block)
 
-    def header_links_count(self):
+    def header_block_links_count(self):
         return len(self.header_links_block().find_elements(By.TAG_NAME, "a"))
 
-    def header_link_text(self, number):
+    def header_block_link_text(self, number):
         return self.header_links_block().find_elements(By.TAG_NAME, "a")[number - 1].text
 
     def click_planning_link(self):
@@ -89,3 +96,27 @@ class Header:
         projects_link = self.browser.find_element(*self.projects_link)
         projects_link.click()
         WebDriverWait(self.browser, 15).until(EC.url_to_be(url))
+
+    def open_help_menu(self):
+        self.browser.find_element(*self.help_menu).click()
+
+    def verify_elements_present(self):
+        assert self.browser.find_element(*self.header).is_displayed()
+        assert self.browser.find_element(*self.header_logo).is_displayed()
+        assert self.browser.find_element(*self.planning_link).is_displayed()
+        assert self.browser.find_element(*self.actuals_link).is_displayed()
+        assert self.browser.find_element(*self.dashboard_link).is_displayed()
+        assert self.browser.find_element(*self.users_link).is_displayed()
+        assert self.browser.find_element(*self.projects_link).is_displayed()
+        assert self.browser.find_element(*self.help_menu).is_displayed()
+        assert self.browser.find_element(*self.open_menu_button).is_displayed()
+
+    def header_elements_text(self, number):
+        elements = self.header().find_elements(By.XPATH, "//a | //img | //button")
+        return elements[number - 1].text
+
+    def user_menu_links_count(self):
+        return len(self.user_menu().find_elements(By.TAG_NAME, "a"))
+
+    def user_menu_link_text(self, number):
+        return self.user_menu().find_elements(By.TAG_NAME, "a")[number - 1].text

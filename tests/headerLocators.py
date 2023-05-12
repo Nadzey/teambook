@@ -19,3 +19,5 @@ class HeaderLocators:
     MUI_DIALOG_CLOSE = (By.CSS_SELECTOR, "svg.MuiSvgIcon-root")
     MUI_DIALOG = (By.CSS_SELECTOR,
                   "body > div.MuiModal-root.MuiDialog-root.tb-default-dialog.css-126xj0f > div.MuiDialog-container.MuiDialog-scrollPaper.css-ekeie0 > div")
+    HEADER = (By.CSS_SELECTOR, '.row.header')
+    USER_MENU = (By.XPATH, "//div[@id='header-menu']//ul[@role='menu']")
