@@ -118,3 +118,23 @@ def users_text():
 @pytest.fixture
 def projects_text():
     return "Projects"
+
+
+@pytest.fixture
+def user_menu_text():
+    return "Test"
+
+
+@pytest.fixture
+def profile_text():
+    return "Profile"
+
+
+@pytest.fixture
+def my_week_text():
+    return "My Week"
+
+
+@pytest.fixture
+def organization_text():
+    return "Organization"

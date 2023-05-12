@@ -4,7 +4,6 @@ from urls import PLANNERS_URL
 import pytest
 
 
-@pytest.mark.new_organization
 def test_create_organization(browser, login_page, registration_data):
     # Steps
     login_page.create_new_organization()
