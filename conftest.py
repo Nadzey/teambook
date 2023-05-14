@@ -21,6 +21,7 @@ def browser():
     screenshot_name = f"screenshot_{screenshot_num}.png"
     driver.save_screenshot(os.path.join(screenshot_dir, screenshot_name))
     driver.quit()
+    # driver.delete_all_cookies()
 
 
 @pytest.fixture(scope="session")
@@ -34,13 +35,6 @@ def urls():
 @pytest.fixture(scope="function")
 def login_page(browser):
     page = LoginPage(browser, LOGIN_URL)
-    page.load()
-    return page
-
-
-@pytest.fixture(scope="function")
-def header(browser):
-    page = header(browser, PLANNERS_URL)
     page.load()
     return page
 
@@ -122,7 +116,7 @@ def projects_text():
 
 @pytest.fixture
 def user_menu_text():
-    return "Test"
+    return "Test\nTQ"
 
 
 @pytest.fixture

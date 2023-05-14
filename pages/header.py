@@ -10,7 +10,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 class Header:
     def __init__(self, browser, url):
         self.browser = browser
-        self.url = url
+        self.urls = url
         self.header_logo = HeaderLocators.LOGO
         self.logout_button = HeaderLocators.LOGOUT_BUTTON
         self.open_menu_button = HeaderLocators.OPEN_MENU_BUTTON
@@ -29,7 +29,7 @@ class Header:
         self.user_menu = HeaderLocators.USER_MENU
 
     def load(self):
-        self.browser.get(self.url)
+        self.browser.get(self.urls)
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.user_menu))
 
     def is_header_logo_displayed(self):
@@ -37,6 +37,9 @@ class Header:
 
     def click_on_header_logo(self):
         self.browser.find_element(*self.header_logo).click()
+
+    def user_menu(self):
+        return self.browser.find_element(*self.user_menu)
 
     def open_user_menu(self):
         self.browser.find_element(*self.open_menu_button).click()
@@ -111,12 +114,21 @@ class Header:
         assert self.browser.find_element(*self.help_menu).is_displayed()
         assert self.browser.find_element(*self.open_menu_button).is_displayed()
 
+    def header_elements(self):
+        return self.browser.find_element(*self.header)
+
     def header_elements_text(self, number):
-        elements = self.header().find_elements(By.XPATH, "//a | //img | //button")
+        elements = self.header_elements().find_elements(By.XPATH, "//a | //img | //button")
         return elements[number - 1].text
 
     def user_menu_links_count(self):
-        return len(self.user_menu().find_elements(By.TAG_NAME, "a"))
+        links = self.browser.find_elements(*self.user_menu)[0].find_elements(By.TAG_NAME, "a")
+        return len(links)
+
+    def user_menu_links(self):
+        user_menu = self.browser.find_element(*self.user_menu)
+        return user_menu.find_elements(By.TAG_NAME, "a") if user_menu else []
 
     def user_menu_link_text(self, number):
-        return self.user_menu().find_elements(By.TAG_NAME, "a")[number - 1].text
+        elements = self.user_menu_links()
+        return elements[number - 1].text
