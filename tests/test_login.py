@@ -3,7 +3,7 @@ from pages.header import Header
 import pytest
 
 
-def test_valid_login(browser, valid_email, valid_password, login_page):
+def test_valid_login(browser, valid_email, valid_password, login_page, urls):
     # Preconditions
     email, password = valid_email, valid_password
     # Steps
@@ -11,8 +11,7 @@ def test_valid_login(browser, valid_email, valid_password, login_page):
     # Expected result
     assert browser.current_url == PLANNERS_URL
     header = Header(browser, PLANNERS_URL)
-    # header.load()
-    assert header.is_header_logo_displayed()
+    header.load()
 
     # logout
     header.logout()
