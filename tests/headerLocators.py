@@ -21,3 +21,10 @@ class HeaderLocators:
                   "body > div.MuiModal-root.MuiDialog-root.tb-default-dialog.css-126xj0f > div.MuiDialog-container.MuiDialog-scrollPaper.css-ekeie0 > div")
     HEADER = (By.CSS_SELECTOR, '.row.header')
     USER_MENU = [By.XPATH, "//div[@id='header-menu']//ul[@role='menu']"]
+    KNOWLEDGE_BASE_LINK = (By.XPATH,
+                           "//div[@id='header-help-menu']//a[@class='tb__text__light-blue col menu__navlink'][normalize-space()='Knowledge Base']")
+    CONTACT_US_LINK = (By.XPATH, "//a[normalize-space()='Contact Us']")
+    SUGGEST_FEATURE_LINK = (By.XPATH, "//a[normalize-space()='Suggest a feature']")
+    PRODUCT_ROAD_MAP_LINK = (By.XPATH, "//a[normalize-space()='Product Roadmap']")
+    REOP_ONBOARD_LINK = (By.XPATH, "//a[normalize-space()='Reopen Onboarding']")
+    REOP_DID_YOU_KNOW_LINK = (By.XPATH, "//div[@id='header-help-menu']//a[1]")

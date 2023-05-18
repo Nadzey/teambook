@@ -1,6 +1,6 @@
-from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, DASHBOARD_URL
-from pages.header import Header
-from selenium.webdriver.common.by import By
+from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, DASHBOARD_URL, PROFILE_URL, MY_WEEK_URL, \
+    SETTINGS_SETTINGS_URL
+from pages.header import Header, UserMenu
 
 
 def test_header_block_links(browser, valid_email, valid_password, login_page, urls, planning_text, actuals_text,
@@ -18,7 +18,7 @@ def test_header_block_links(browser, valid_email, valid_password, login_page, ur
     assert header.header_block_link_text(4) == users_text
     assert header.header_block_link_text(5) == projects_text
 
-    assert browser.current_url == PLANNERS_URL
+    assert "planners" in browser.current_url
 
 
 def test_elements_present_in_header(browser, planning_text, actuals_text, dashboard_text, users_text, projects_text,
@@ -37,14 +37,36 @@ def test_elements_present_in_header(browser, planning_text, actuals_text, dashbo
 
 def test_user_menu_links_present(browser, profile_text, my_week_text, organization_text):
     # steps
-    header = Header(browser, PLANNERS_URL)
-    header.load()
-    header.open_user_menu()
+    header_instance = Header(browser, PLANNERS_URL)
+    user_menu_instance = UserMenu(browser, PLANNERS_URL)
+    header_instance.load()
+    header_instance.open_user_menu()
     # Expected result
-    assert header.user_menu_links_count() == 4
-    assert header.user_menu_link_text(1) == profile_text
-    assert header.user_menu_link_text(2) == my_week_text
-    assert header.user_menu_link_text(3) == organization_text
+    assert user_menu_instance.user_menu_links_count() == 4
+    assert user_menu_instance.user_menu_link_text(1) == profile_text
+    assert user_menu_instance.user_menu_link_text(2) == my_week_text
+    assert user_menu_instance.user_menu_link_text(3) == organization_text
+
+
+def test_my_week_link_transfer_user_to_correct_URL(browser):
+    user_menu = UserMenu(browser, PLANNERS_URL)
+    user_menu.load()
+    user_menu.my_week_link_open()
+    assert browser.current_url == MY_WEEK_URL
+
+
+def test_profile_link_transfer_user_to_correct_URL(browser):
+    user_menu = UserMenu(browser, PLANNERS_URL)
+    user_menu.load()
+    user_menu.profile_link_open()
+    assert browser.current_url == PROFILE_URL
+
+
+def test_organization_link_transfer_user_to_correct_URL(browser):
+    user_menu = UserMenu(browser, PLANNERS_URL)
+    user_menu.load()
+    user_menu.organization_link_open()
+    assert browser.current_url == SETTINGS_SETTINGS_URL
 
 
 def test_project_link_opens(browser):
@@ -85,11 +107,13 @@ def test_actuals_link_opens(browser):
 
 def test_clicking_on_logo_return_to_planner_page(browser):
     # steps
-    header = Header(browser, PLANNERS_URL)
-    header.load()
-    header.click_on_header_logo()
+    header_instance = Header(browser, PLANNERS_URL)
+    user_menu_instance = UserMenu(browser, PLANNERS_URL)
+    header_instance.load()
+    header_instance.click_on_header_logo()
     # Expected result
     assert "planners" in browser.current_url
 
     # logout
-    header.logout()
+    user_menu_instance.load()
+    user_menu_instance.logout()

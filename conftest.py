@@ -4,6 +4,7 @@ from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
 from pages.login_page import LoginPage
 from urls import LOGIN_URL, PLANNERS_URL
+import time
 
 
 @pytest.fixture(scope="session")
@@ -37,6 +38,22 @@ def login_page(browser):
     page = LoginPage(browser, LOGIN_URL)
     page.load()
     return page
+
+
+@pytest.fixture(autouse=False)
+def logout_after_test(request):
+    yield
+    # After each test, perform the logout operation
+    request.node.cls.logout()
+    time.sleep(3)
+
+
+@pytest.fixture
+def authenticated_user(browser):
+    login_page = LoginPage(browser)
+    login_page.load()
+    login_page.login(valid_email, valid_password)
+    yield
 
 
 @pytest.fixture

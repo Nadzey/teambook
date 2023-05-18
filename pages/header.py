@@ -12,10 +12,9 @@ class Header:
         self.browser = browser
         self.urls = url
         self.header_logo = HeaderLocators.LOGO
-        self.logout_button = HeaderLocators.LOGOUT_BUTTON
+        # self.logout_button = HeaderLocators.LOGOUT_BUTTON
         self.open_menu_button = HeaderLocators.OPEN_MENU_BUTTON
         self.onboarding_header = HeaderLocators.ONBOARDING_HEADER
-        self.organization_link = HeaderLocators.ORGANIZATION_LINK
         self.planning_link = HeaderLocators.PLANNERS_LINK
         self.users_link = HeaderLocators.USER_LINK
         self.dashboard_link = HeaderLocators.DASHBOARD_LINK
@@ -44,20 +43,8 @@ class Header:
     def open_user_menu(self):
         self.browser.find_element(*self.open_menu_button).click()
 
-    def logout(self):
-        self.open_user_menu()
-        time.sleep(3)
-        self.browser.find_element(*self.logout_button).click()
-
     def onboarding_header(self):
         return self.browser.find_element(*HeaderLocators.ONBOARDING_HEADER)
-
-    def organization_link_open(self):
-        self.open_user_menu()
-        time.sleep(3)
-        element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.organization_link))
-        element.click()
-        time.sleep(5)
 
     def header_links_block(self):
         return self.browser.find_element(*self.header_block)
@@ -121,6 +108,33 @@ class Header:
         elements = self.header_elements().find_elements(By.XPATH, "//a | //img | //button")
         return elements[number - 1].text
 
+
+class UserMenu:
+    def __init__(self, browser, url):
+        self.browser = browser
+        self.urls = url
+        self.logout_button = HeaderLocators.LOGOUT_BUTTON
+        self.header = HeaderLocators.HEADER
+        self.user_menu = HeaderLocators.USER_MENU
+        self.organization_link = HeaderLocators.ORGANIZATION_LINK
+        self.header_instance = Header(browser, url)
+        self.profile_link = HeaderLocators.PROFILE_LINK
+        self.my_week_link = HeaderLocators.MY_WEEK_LINK
+
+    def open_user_menu(self):
+        self.header_instance.open_user_menu()
+
+    def load(self):
+        self.browser.get(self.urls)
+        WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.user_menu))
+
+    def organization_link_open(self):
+        self.header_instance.open_user_menu()
+        time.sleep(3)
+        element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.organization_link))
+        element.click()
+        time.sleep(5)
+
     def user_menu_links_count(self):
         links = self.browser.find_elements(*self.user_menu)[0].find_elements(By.TAG_NAME, "a")
         return len(links)
@@ -132,3 +146,30 @@ class Header:
     def user_menu_link_text(self, number):
         elements = self.user_menu_links()
         return elements[number - 1].text
+
+    def logout(self):
+        self.header_instance.open_user_menu()
+        time.sleep(3)
+        self.browser.find_element(*self.logout_button).click()
+
+    def my_week_link_open(self):
+        self.header_instance.open_user_menu()
+        time.sleep(3)
+        self.browser.find_element(*self.my_week_link).click()
+
+    def profile_link_open(self):
+        self.header_instance.open_user_menu()
+        time.sleep(3)
+        self.browser.find_element(*self.profile_link).click()
+
+
+class HelpMenu:
+    def __init__(self, browser, url):
+        self.browser = browser
+        self.urls = url
+        self.knowledge_base_link = HeaderLocators.KNOWLEDGE_BASE_LINK
+        self.contact_us_link = HeaderLocators.CONTACT_US_LINK
+        self.suggest_feature_link = HeaderLocators.SUGGEST_FEATURE_LINK
+        self.product_road_map_link = HeaderLocators.PRODUCT_ROAD_MAP_LINK
+        self.reop_onboarding_link = HeaderLocators.REOP_ONBOARD_LINK
+        self.reop_did_you_know_link = HeaderLocators.REOP_DID_YOU_KNOW_LINK
