@@ -1,0 +1,30 @@
+[browser]
+name = "chrome"
+arguments = ["--headless"]
+
+[webdriver.chrome.service]
+executable = "./chromedriver.exe"
+
+[login_page]
+url = "https://web.teambooktest.com/login"
+
+[screenshot]
+directory = "./result"
+
+[urls]
+login_url = "https://web.teambooktest.com/login"
+planners_url = "https://web.teambooktest.com/planners/"
+register_url = "https://web.teambooktest.com/register"
+settings_settings_url = "https://web.teambooktest.com/settings?page=settings"
+settings_delete_url = "https://web.teambooktest.com/settings?page=delete"
+user_url = "https://web.teambooktest.com/users"
+project_url = "https://web.teambooktest.com/projects"
+dashboard_url = "https://web.teambooktest.com/dashboard"
+actuals_url = "https://web.teambooktest.com/actuals"
+
+[registration_data]
+email = "test@example.com"
+password = "Test123!"
+first_name = "John"
+last_name = "Doe"
+company_name = "Test test Company"

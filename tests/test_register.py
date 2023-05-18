@@ -1,5 +1,5 @@
 from pages import register_page
-from pages.header import Header
+from pages.header import Header, UserMenu
 from urls import PLANNERS_URL
 import pytest
 
@@ -15,9 +15,10 @@ def test_create_organization(browser, login_page, registration_data):
     # Expected result
     assert "planners" in browser.current_url
     # logout
-    header = Header(browser, PLANNERS_URL)
-    # header.load()
-    header.logout()
+    user_menu = UserMenu(browser, PLANNERS_URL)
+    user_menu.load()
+    user_menu.load()
+    user_menu.logout()
 
 
 def test_create_organization_with_existing_data(browser, login_page, registration_data, error_message1):

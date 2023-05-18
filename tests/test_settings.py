@@ -1,4 +1,4 @@
-from pages.header import Header
+from pages.header import Header, UserMenu
 from urls import PLANNERS_URL
 from pages.settings_page import SettingsPage
 import pytest
@@ -9,9 +9,9 @@ def test_delete_organization(browser, login_page, registration_data):
     email, password = registration_data["email"], registration_data["password"]
     login_page.login(email, password)
 
-    header = Header(browser, PLANNERS_URL)
-    # header.load()
-    header.organization_link_open()
+    user_menu = UserMenu(browser, PLANNERS_URL)
+    user_menu.load()
+    user_menu.organization_link_open()
     # Steps
     settings_page = SettingsPage(browser)
     settings_page.load()

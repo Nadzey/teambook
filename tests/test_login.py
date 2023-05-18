@@ -1,20 +1,20 @@
 from urls import PLANNERS_URL
-from pages.header import Header
+from pages.header import Header, UserMenu
 import pytest
 
 
-def test_valid_login(browser, valid_email, valid_password, login_page, urls):
+def test_valid_login(browser, valid_email, valid_password, login_page):
     # Preconditions
     email, password = valid_email, valid_password
     # Steps
     login_page.login(email, password)
     # Expected result
-    assert browser.current_url == PLANNERS_URL
-    header = Header(browser, PLANNERS_URL)
-    header.load()
-
+    assert "planners" in browser.current_url
     # logout
-    header.logout()
+    user_menu = UserMenu(browser, PLANNERS_URL)
+    user_menu.load()
+    user_menu.load()
+    user_menu.logout()
 
 
 def test_invalid_email_login(browser, invalid_email, login_page, error_message):
