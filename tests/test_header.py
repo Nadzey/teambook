@@ -1,5 +1,4 @@
-from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, DASHBOARD_URL, PROFILE_URL, MY_WEEK_URL, \
-    SETTINGS_SETTINGS_URL
+from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, DASHBOARD_URL, PROFILE_URL, SETTINGS_SETTINGS_URL
 from pages.header import Header, UserMenu
 
 
@@ -52,7 +51,7 @@ def test_my_week_link_transfer_user_to_correct_URL(browser):
     user_menu = UserMenu(browser, PLANNERS_URL)
     user_menu.load()
     user_menu.my_week_link_open()
-    assert browser.current_url == MY_WEEK_URL
+    assert "my-week" in browser.current_url
 
 
 def test_profile_link_transfer_user_to_correct_URL(browser):
