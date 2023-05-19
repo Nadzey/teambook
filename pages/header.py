@@ -12,7 +12,6 @@ class Header:
         self.browser = browser
         self.urls = url
         self.header_logo = HeaderLocators.LOGO
-        # self.logout_button = HeaderLocators.LOGOUT_BUTTON
         self.open_menu_button = HeaderLocators.OPEN_MENU_BUTTON
         self.onboarding_header = HeaderLocators.ONBOARDING_HEADER
         self.planning_link = HeaderLocators.PLANNERS_LINK
@@ -69,7 +68,6 @@ class Header:
             EC.visibility_of_element_located((self.mui_dialog)))
         close_button = dialog.find_element(*self.mui_dialog_close)
         close_button.click()
-
         WebDriverWait(self.browser, 30).until(EC.url_to_be(ACTUALS_URL))
 
     def click_dashboard_link(self):
@@ -130,7 +128,7 @@ class UserMenu:
 
     def organization_link_open(self):
         self.header_instance.open_user_menu()
-        time.sleep(3)
+        # time.sleep(3)
         element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.organization_link))
         element.click()
         time.sleep(5)
