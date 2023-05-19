@@ -1,5 +1,5 @@
 from urls import PLANNERS_URL
-from pages.header import Header, UserMenu
+from pages.header import UserMenu
 import pytest
 
 

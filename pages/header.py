@@ -154,12 +154,13 @@ class UserMenu:
         self.header_instance.open_user_menu()
         time.sleep(3)
         self.browser.find_element(*self.my_week_link).click()
+        time.sleep(5)
 
     def profile_link_open(self):
         self.header_instance.open_user_menu()
         time.sleep(3)
         self.browser.find_element(*self.profile_link).click()
-
+        time.sleep(5)
 
 class HelpMenu:
     def __init__(self, browser, url):
@@ -171,3 +172,27 @@ class HelpMenu:
         self.product_road_map_link = HeaderLocators.PRODUCT_ROAD_MAP_LINK
         self.reop_onboarding_link = HeaderLocators.REOP_ONBOARD_LINK
         self.reop_did_you_know_link = HeaderLocators.REOP_DID_YOU_KNOW_LINK
+        self.help_menu1 = HeaderLocators.HELP1
+        self.header_instance = Header(browser, url)
+        self.help_menu_button = HeaderLocators.HELP
+
+    def load(self):
+        self.browser.get(self.urls)
+        WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.help_menu1))
+
+    def click_help_menu(self):
+        self.browser.find_element(*self.help_menu_button).click()
+
+    def help_menu_links(self):
+        help_menu = self.browser.find_element(*self.help_menu1)
+        elements = help_menu.find_elements(By.TAG_NAME, "a") if help_menu else []
+        print(f"Number of elements in help menu: {len(elements)}")
+        print(f"Elements: {elements}")
+        return elements
+
+    def help_menu_link_text(self, number):
+        elements = self.help_menu_links()
+        return elements[number - 1].text
+
+    def help_menu_links_count(self):
+        return len(self.help_menu_links())

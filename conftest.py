@@ -3,7 +3,7 @@ import os
 from selenium.webdriver import Chrome
 from selenium.webdriver.chrome.service import Service
 from pages.login_page import LoginPage
-from urls import LOGIN_URL, PLANNERS_URL
+from urls import LOGIN_URL
 import time
 
 
@@ -149,3 +149,23 @@ def my_week_text():
 @pytest.fixture
 def organization_text():
     return "Organization"
+
+
+@pytest.fixture
+def knowledge_text():
+    return "Knowledge Base"
+
+
+@pytest.fixture
+def contact_us_text():
+    return "Contact Us"
+
+
+@pytest.fixture
+def roadmap_text():
+    return "Product Roadmap"
+
+
+@pytest.fixture
+def suggest_feature_text():
+    return "Suggest a feature"

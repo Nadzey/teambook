@@ -1,7 +1,6 @@
 from pages import register_page
-from pages.header import Header, UserMenu
+from pages.header import UserMenu
 from urls import PLANNERS_URL
-import pytest
 
 
 def test_create_organization(browser, login_page, registration_data):

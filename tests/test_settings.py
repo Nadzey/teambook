@@ -1,7 +1,6 @@
-from pages.header import Header, UserMenu
+from pages.header import UserMenu
 from urls import PLANNERS_URL
 from pages.settings_page import SettingsPage
-import pytest
 
 
 def test_delete_organization(browser, login_page, registration_data):

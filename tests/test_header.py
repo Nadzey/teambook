@@ -1,5 +1,5 @@
 from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, DASHBOARD_URL, PROFILE_URL, SETTINGS_SETTINGS_URL
-from pages.header import Header, UserMenu
+from pages.header import Header, UserMenu, HelpMenu
 
 
 def test_header_block_links(browser, valid_email, valid_password, login_page, urls, planning_text, actuals_text,
@@ -66,6 +66,19 @@ def test_organization_link_transfer_user_to_correct_URL(browser):
     user_menu.load()
     user_menu.organization_link_open()
     assert browser.current_url == SETTINGS_SETTINGS_URL
+
+
+def test_help_menu_links_present(browser, knowledge_text, contact_us_text, roadmap_text, suggest_feature_text):
+    # steps
+    help_menu = HelpMenu(browser, PLANNERS_URL)
+    help_menu.load()
+    help_menu.click_help_menu()
+    # Expected result
+    assert help_menu.help_menu_links_count() == 6
+    assert help_menu.help_menu_link_text(1) == knowledge_text
+    assert help_menu.help_menu_link_text(2) == contact_us_text
+    assert help_menu.help_menu_link_text(3) == suggest_feature_text
+    assert help_menu.help_menu_link_text(4) == roadmap_text
 
 
 def test_project_link_opens(browser):
