@@ -128,7 +128,7 @@ class UserMenu:
 
     def organization_link_open(self):
         self.header_instance.open_user_menu()
-        # time.sleep(3)
+        time.sleep(3)
         element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.organization_link))
         element.click()
         time.sleep(5)
