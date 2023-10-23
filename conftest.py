@@ -9,7 +9,7 @@ import time
 
 @pytest.fixture(scope="session")
 def browser():
-    service = Service('./chromedriver.exe')
+    service = Service('chromedriver.exe')
     driver = Chrome(service=service)
     driver.maximize_window()
     screenshot_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "result")
