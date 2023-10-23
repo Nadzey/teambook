@@ -1,6 +1,5 @@
-from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, LOGIN_URL, DASHBOARD_URL, PROFILE_URL, \
-    SETTINGS_SETTINGS_URL
-from pages.header import Header, UserMenu, HelpMenu
+from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, LOGIN_URL, DASHBOARD_URL
+from pages.header import Header, UserMenu
 
 
 def test_header_block_links(browser, valid_email, valid_password, login_page, urls, planning_text, actuals_text,
