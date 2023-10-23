@@ -48,7 +48,7 @@ class Header:
     def open_user_menu(self):
         user_menu = self.browser.find_element(*self.open_menu_button)
         user_menu.click()
-        time.sleep(3)
+        # time.sleep(3)
 
     def onboarding_header(self):
         return self.browser.find_element(*HeaderLocators.ONBOARDING_HEADER)
