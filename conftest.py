@@ -14,7 +14,6 @@ def browser():
     chrome_options.add_argument("--headless")  # Включить режим headless
     chrome_options.add_argument("--disable-gpu")  # Отключить использование GPU
     chrome_options.add_argument("--window-size=1920,1080")  # Установить разрешение окна
-
     service = Service('chromedriver.exe')
     driver = Chrome(service=service)
     driver.maximize_window()
