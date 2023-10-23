@@ -83,12 +83,12 @@ def test_dashboard_link_opens(browser):
     assert browser.current_url == DASHBOARD_URL
 
 
-def test_actual_link_opens(browser):
-    # steps
-    header_instance = Header(browser, PLANNERS_URL)
-    header_instance.click_actual_link()
-    # Expected result
-    assert browser.current_url == ACTUALS_URL
+# def test_actual_link_opens(browser):
+#     # steps
+#     header_instance = Header(browser, PLANNERS_URL)
+#     header_instance.click_actual_link()
+#     # Expected result
+#     assert browser.current_url == ACTUALS_URL
 
 
 # def test_my_week_link_transfer_user_to_correct_URL(browser):

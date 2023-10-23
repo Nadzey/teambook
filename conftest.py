@@ -5,10 +5,16 @@ from selenium.webdriver.chrome.service import Service
 from pages.login_page import LoginPage
 from urls import LOGIN_URL
 import time
-
+from selenium.webdriver.chrome.options import Options
 
 @pytest.fixture(scope="session")
 def browser():
+    chrome_options = Options()
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--headless")  # Включить режим headless
+    chrome_options.add_argument("--disable-gpu")  # Отключить использование GPU
+    chrome_options.add_argument("--window-size=1920,1080")  # Установить разрешение окна
+
     service = Service('chromedriver.exe')
     driver = Chrome(service=service)
     driver.maximize_window()

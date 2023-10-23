@@ -160,6 +160,7 @@ class UserMenu:
         self.header_instance.open_user_menu()
         time.sleep(3)
         self.browser.find_element(*self.logout_button).click()
+        time.sleep(3)
 
     def my_week_link_open(self):
         self.header_instance.open_user_menu()
