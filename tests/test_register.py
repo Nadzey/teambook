@@ -15,8 +15,6 @@ def test_create_organization(browser, login_page, registration_data):
     assert "planners" in browser.current_url
     # logout
     user_menu = UserMenu(browser, PLANNERS_URL)
-    user_menu.load()
-    user_menu.load()
     user_menu.logout()
 
 
