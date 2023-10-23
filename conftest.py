@@ -97,7 +97,7 @@ def registration_data():
         "password": "Test123!",
         "first_name": "John",
         "last_name": "Doe",
-        "company_name": "Test test Company",
+        "company_name": "Test test Company1",
     }
 
 
@@ -133,7 +133,7 @@ def projects_text():
 
 @pytest.fixture
 def user_menu_text():
-    return "Test\nTQ"
+    return "John\nJS"
 
 
 @pytest.fixture
