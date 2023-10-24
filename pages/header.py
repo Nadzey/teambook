@@ -79,10 +79,10 @@ class Header:
         actual_link.click()
         WebDriverWait(self.browser, 15).until(EC.url_to_be(ACTUALS_URL))
 
-        dialog = WebDriverWait(self.browser, 15).until(
-            EC.visibility_of_element_located((self.mui_dialog)))
-        close_button = dialog.find_element(*self.mui_dialog_close)
-        close_button.click()
+        # dialog = WebDriverWait(self.browser, 15).until(
+        #     EC.visibility_of_element_located((self.mui_dialog)))
+        # close_button = dialog.find_element(*self.mui_dialog_close)
+        # close_button.click()
         WebDriverWait(self.browser, 30).until(EC.url_to_be(ACTUALS_URL))
 
     def click_dashboard_link(self):
