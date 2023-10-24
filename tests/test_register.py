@@ -1,5 +1,5 @@
 from pages import register_page
-from pages.header import UserMenu
+from pages.header import UserMenu, Header
 from urls import PLANNERS_URL
 
 
@@ -14,8 +14,8 @@ def test_create_organization(browser, login_page, registration_data):
     # Expected result
     assert "planners" in browser.current_url
     # logout
-    user_menu = UserMenu(browser, PLANNERS_URL)
-    user_menu.logout()
+    header = Header(browser, PLANNERS_URL)
+    header.logout()
 
 
 def test_create_organization_with_existing_data(browser, login_page, registration_data, error_message1):
