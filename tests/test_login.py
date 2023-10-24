@@ -1,5 +1,5 @@
 from urls import PLANNERS_URL
-from pages.header import UserMenu
+from pages.header import Header
 import pytest
 
 
@@ -11,9 +11,9 @@ def test_valid_login(browser, valid_email, valid_password, login_page):
     # Expected result
     assert "planners" in browser.current_url
     # logout
-    user_menu = UserMenu(browser, PLANNERS_URL)
+    header = Header(browser, PLANNERS_URL)
 
-    user_menu.logout()
+    header.logout()
 
 
 def test_invalid_email_login(browser, invalid_email, login_page, error_message):

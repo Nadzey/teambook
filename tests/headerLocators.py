@@ -9,7 +9,7 @@ class HeaderLocators:
     ORGANIZATION_LINK = (By.CSS_SELECTOR, '.tb__text__light-blue.col.menu__navlink.mobile_hidden:nth-child(3)')
     PROFILE_LINK = (By.CSS_SELECTOR, '.tb__text__light-blue.col.menu__navlink.mobile_hidden:first-child')
     MY_WEEK_LINK = (By.CSS_SELECTOR, '.tb__text__light-blue.col.menu__navlink.mobile_hidden:nth-child(2)')
-    HELP = (By.CLASS_NAME, "mobile_hidden.header__help-icon-block")
+    HELP = (By.CLASS_NAME, "header__help-icon")
     PLANNERS_LINK = (By.XPATH, "//a[normalize-space()='Planning']")
     DASHBOARD_LINK = (By.XPATH, "//a[normalize-space()='Dashboard']")
     USER_LINK = (By.XPATH, "//a[normalize-space()='Users']")
@@ -28,8 +28,6 @@ class HeaderLocators:
     PRODUCT_ROAD_MAP_LINK = (By.XPATH, "//a[normalize-space()='Product Roadmap']")
     REOP_ONBOARD_LINK = (By.XPATH, "//a[normalize-space()='Reopen Onboarding']")
     REOP_DID_YOU_KNOW_LINK = (By.XPATH, "//div[@id='header-help-menu']//a[1]")
-    HELP1 = [By.XPATH, "//div[@id='header-help-menu']//div[@class='MuiPaper-root MuiPaper-elevation MuiPaper-rounded "
-                       "MuiPaper-elevation1 MuiMenu-paper MuiPaper-root MuiPaper-elevation MuiPaper-rounded "
-                       "MuiPaper-elevation8 MuiPopover-paper css-177ic5c']"]
+    HELP1 = [By.CLASS_NAME, "MuiList-root.MuiList-padding.MuiMenu-list.css-r8u8y9"]
     GETTING_STARTED = (By.CSS_SELECTOR, "onboarding__footer button")
     BACKGROUND = (By.CLASS_NAME, "MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-esi9ax")
