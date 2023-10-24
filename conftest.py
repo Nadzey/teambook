@@ -6,7 +6,7 @@ from pages.login_page import LoginPage
 from urls import LOGIN_URL
 import time
 from selenium.webdriver.chrome.options import Options
-
+import chromedriver_autoinstaller
 
 
 @pytest.fixture(scope="session")
@@ -16,7 +16,7 @@ def browser():
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-extensions')
-    driver = Chrome(service=service, options=chrome_options)
+    driver = Chrome(options=chrome_options)
 
     driver.maximize_window()
     driver.get('https://google.com')
