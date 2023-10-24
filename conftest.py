@@ -153,7 +153,7 @@ def organization_text():
 
 @pytest.fixture
 def knowledge_text():
-    return "Knowledge Base"
+    return 'Knowledge Base'
 
 
 @pytest.fixture
