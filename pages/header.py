@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 from selenium.webdriver.common.by import By
 from urls import ACTUALS_URL, PLANNERS_URL, USER_URL, DASHBOARD_URL, PROJECT_URL
-from selenium.webdriver.common.action_chains import ActionChains
 
 
 class Header:
@@ -48,7 +47,7 @@ class Header:
     def open_user_menu(self):
         user_menu = self.browser.find_element(*self.open_menu_button)
         user_menu.click()
-        # time.sleep(3)
+        time.sleep(3)
 
     def onboarding_header(self):
         return self.browser.find_element(*HeaderLocators.ONBOARDING_HEADER)
@@ -159,8 +158,8 @@ class UserMenu:
 
     def logout(self):
         self.header_instance.open_user_menu()
-        time.sleep(3)
-        self.browser.find_element(*self.logout_button).click()
+        logout = self.browser.find_element(*self.logout_button)
+        logout.click()
 
     def my_week_link_open(self):
         self.header_instance.open_user_menu()

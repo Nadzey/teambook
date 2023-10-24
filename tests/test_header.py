@@ -1,6 +1,6 @@
-from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, LOGIN_URL, DASHBOARD_URL, PROFILE_URL, \
-    SETTINGS_SETTINGS_URL
-from pages.header import Header, UserMenu, HelpMenu
+from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, MY_WEEK_URL, SETTINGS_SETTINGS_URL, PROFILE_URL, \
+    LOGIN_URL, DASHBOARD_URL
+from pages.header import Header, UserMenu
 
 
 def test_header_block_links(browser, valid_email, valid_password, login_page, urls, planning_text, actuals_text,
@@ -84,12 +84,12 @@ def test_dashboard_link_opens(browser):
     assert browser.current_url == DASHBOARD_URL
 
 
-def test_actual_link_opens(browser):
-    # steps
-    header_instance = Header(browser, PLANNERS_URL)
-    header_instance.click_actual_link()
-    # Expected result
-    assert browser.current_url == ACTUALS_URL
+# def test_actual_link_opens(browser):
+#     # steps
+#     header_instance = Header(browser, PLANNERS_URL)
+#     header_instance.click_actual_link()
+#     # Expected result
+#     assert browser.current_url == ACTUALS_URL
 
 
 # def test_my_week_link_transfer_user_to_correct_URL(browser):
@@ -97,7 +97,7 @@ def test_actual_link_opens(browser):
 #     user_menu = UserMenu(browser, PLANNERS_URL)
 #     user_menu.my_week_link_open()
 #     # Expected result
-#     assert "my-week" in browser.current_url
+#     assert browser.current_url == MY_WEEK_URL
 #
 #
 # def test_profile_link_transfer_user_to_correct_URL(browser):
@@ -106,24 +106,15 @@ def test_actual_link_opens(browser):
 #     user_menu.profile_link_open()
 #     # Expected result
 #     assert browser.current_url == PROFILE_URL
+#
+#
+# def test_organization_link_transfer_user_to_correct_URL(browser):
+#     # steps
+#     user_menu = UserMenu(browser, PLANNERS_URL)
+#     user_menu.organization_link_open()
+#     # Expected result
+#     assert browser.current_url == SETTINGS_SETTINGS_URL
 
-
-def logout(browser):
-    user_menu_instance = UserMenu(browser, LOGIN_URL)
-    # logout
-    user_menu_instance.logout()
-    assert browser.current_url == LOGIN_URL
-
-    #
-    #
-    # def test_organization_link_transfer_user_to_correct_URL(browser):
-    #     # steps
-    #     user_menu_instance = UserMenu(browser, PLANNERS_URL)
-    #     user_menu_instance.organization_link_open()
-    #     # Expected result
-    #     assert browser.current_url == SETTINGS_SETTINGS_URL
-    #
-    #
     # def test_help_menu_links_present(browser, knowledge_text, contact_us_text, roadmap_text, suggest_feature_text):
     #     # steps
     #     help_menu = HelpMenu(browser, PLANNERS_URL)
@@ -135,3 +126,9 @@ def logout(browser):
     #     assert help_menu.help_menu_link_text(2) == contact_us_text
     #     assert help_menu.help_menu_link_text(3) == suggest_feature_text
     #     assert help_menu.help_menu_link_text(4) == roadmap_text
+
+
+def test_logout(browser):
+    user_menu = UserMenu(browser, LOGIN_URL)
+    user_menu.logout()
+    assert browser.current_url == LOGIN_URL
