@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 from selenium.webdriver.common.by import By
 from urls import ACTUALS_URL, PLANNERS_URL, USER_URL, DASHBOARD_URL, PROJECT_URL
-from selenium.webdriver.common.action_chains import ActionChains
 
 
 class Header:
@@ -25,6 +24,8 @@ class Header:
         self.help_menu = HeaderLocators.HELP
         self.header = HeaderLocators.HEADER
         self.user_menu = HeaderLocators.USER_MENU
+        self.getting_start = HeaderLocators.GETTING_STARTED
+        self.background = HeaderLocators.BACKGROUND
 
     def load(self):
         self.browser.get(self.urls)
@@ -34,13 +35,19 @@ class Header:
         return self.browser.find_element(*self.header_logo).is_displayed()
 
     def click_on_header_logo(self):
-        self.browser.find_element(*self.header_logo).click()
+        header_logo = self.browser.find_element(*self.header_logo)
+        header_logo.click()
+
+    def close_getting_started(self):
+        self.browser.find_element(*self.getting_start).click()
 
     def user_menu(self):
         return self.browser.find_element(*self.user_menu)
 
     def open_user_menu(self):
-        self.browser.find_element(*self.open_menu_button).click()
+        user_menu = self.browser.find_element(*self.open_menu_button)
+        user_menu.click()
+        time.sleep(3)
 
     def onboarding_header(self):
         return self.browser.find_element(*HeaderLocators.ONBOARDING_HEADER)
@@ -59,10 +66,9 @@ class Header:
         planning_link.click()
         WebDriverWait(self.browser, 15).until(EC.url_to_be(PLANNERS_URL))
 
-    def click_actuals_link(self):
-        actuals_link = self.browser.find_element(*self.actuals_link)
-        actions = ActionChains(self.browser)
-        actions.move_to_element(actuals_link).click()
+    def click_actual_link(self):
+        actual_link = self.browser.find_element(*self.actuals_link)
+        actual_link.click()
 
         dialog = WebDriverWait(self.browser, 15).until(
             EC.visibility_of_element_located((self.mui_dialog)))
@@ -85,8 +91,8 @@ class Header:
         projects_link.click()
         WebDriverWait(self.browser, 15).until(EC.url_to_be(url))
 
-    def open_help_menu(self):
-        self.browser.find_element(*self.help_menu).click()
+    # def open_help_menu(self):
+    #     self.browser.find_element(*self.help_menu).click()
 
     def verify_elements_present(self):
         assert self.browser.find_element(*self.header).is_displayed()
@@ -109,6 +115,7 @@ class Header:
 
 class UserMenu:
     def __init__(self, browser, url):
+        self.background = HeaderLocators.BACKGROUND
         self.browser = browser
         self.urls = url
         self.logout_button = HeaderLocators.LOGOUT_BUTTON
@@ -127,11 +134,15 @@ class UserMenu:
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.user_menu))
 
     def organization_link_open(self):
+        #
+        # backdrop = self.browser.find_element(*self.background)
+        # self.browser.execute_script('arguments[0].style="opacity: 1;"', backdrop)
+        # time.sleep(3)
         self.header_instance.open_user_menu()
         time.sleep(3)
-        element = WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.organization_link))
-        element.click()
-        time.sleep(5)
+        organization = self.browser.find_element(*self.organization_link)
+        organization.click()
+        time.sleep(3)
 
     def user_menu_links_count(self):
         links = self.browser.find_elements(*self.user_menu)[0].find_elements(By.TAG_NAME, "a")
@@ -147,20 +158,19 @@ class UserMenu:
 
     def logout(self):
         self.header_instance.open_user_menu()
-        time.sleep(3)
-        self.browser.find_element(*self.logout_button).click()
+        logout = self.browser.find_element(*self.logout_button)
+        logout.click()
 
     def my_week_link_open(self):
         self.header_instance.open_user_menu()
-        time.sleep(3)
-        self.browser.find_element(*self.my_week_link).click()
-        time.sleep(5)
+        my_week = self.browser.find_element(*self.my_week_link)
+        my_week.click()
 
     def profile_link_open(self):
         self.header_instance.open_user_menu()
-        time.sleep(3)
-        self.browser.find_element(*self.profile_link).click()
-        time.sleep(5)
+        profile = self.browser.find_element(*self.profile_link)
+        profile.click()
+
 
 class HelpMenu:
     def __init__(self, browser, url):

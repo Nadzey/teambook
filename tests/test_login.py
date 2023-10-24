@@ -12,8 +12,7 @@ def test_valid_login(browser, valid_email, valid_password, login_page):
     assert "planners" in browser.current_url
     # logout
     user_menu = UserMenu(browser, PLANNERS_URL)
-    user_menu.load()
-    user_menu.load()
+
     user_menu.logout()
 
 
