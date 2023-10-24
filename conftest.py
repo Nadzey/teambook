@@ -5,7 +5,9 @@ from selenium.webdriver.chrome.service import Service
 from pages.login_page import LoginPage
 from urls import LOGIN_URL
 import time
+from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 @pytest.fixture(scope="session")
 def browser():
@@ -15,8 +17,9 @@ def browser():
     chrome_options.add_argument("--disable-gpu")  # Отключить использование GPU
     chrome_options.add_argument("--window-size=1920,1080")  # Установить разрешение окна
 
-    service = Service('chromedriver.exe')
-    driver = Chrome(service=service)
+    service = ChromeService('chromedriver.exe')
+    driver = webdriver.Chrome(service=service, options=chrome_options)
+    driver.get('https://google.com')
     driver.maximize_window()
     screenshot_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "result")
     screenshot_num = 0
