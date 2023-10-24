@@ -11,7 +11,9 @@ import chromedriver_autoinstaller
 
 @pytest.fixture(scope="session")
 def browser():
+
     chromedriver_autoinstaller.install() 
+
 
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
