@@ -136,6 +136,6 @@ def test_organization_link_transfer_user_to_correct_URL(browser):
 
 def test_logout(browser):
     header = Header(browser, PLANNERS_URL)
-    header.load()
+    header.click_on_header_logo()
     header.logout()
     assert browser.current_url == LOGIN_URL
