@@ -5,13 +5,20 @@ from selenium.webdriver.chrome.service import Service
 from pages.login_page import LoginPage
 from urls import LOGIN_URL
 import time
+from selenium.webdriver.chrome.options import Options
+
 
 
 @pytest.fixture(scope="session")
 def browser():
     chromedriver_path = 'C:/projects/webdrivers/chromedriver-win64/chromedriver.exe'
     service = Service(chromedriver_path)
-    driver = Chrome(service=service)
+
+    chrome_options = Options()
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-extensions')
+    driver = Chrome(service=service, options=chrome_options)
+
     driver.maximize_window()
     screenshot_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "result")
     screenshot_num = 0
