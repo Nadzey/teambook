@@ -20,6 +20,7 @@ def browser():
 
     driver = Chrome(service=service, options=chrome_options)
     driver.maximize_window()
+    driver.get('https://google.com')
     screenshot_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "result")
     screenshot_num = 0
     yield driver
