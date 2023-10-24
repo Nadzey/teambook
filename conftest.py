@@ -17,8 +17,8 @@ def browser():
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-extensions')
-
     driver = Chrome(service=service, options=chrome_options)
+
     driver.maximize_window()
     screenshot_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "result")
     screenshot_num = 0
