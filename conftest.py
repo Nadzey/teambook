@@ -14,9 +14,9 @@ def browser():
 
     chromedriver_autoinstaller.install() 
 
-
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-extensions')
     driver = Chrome(options=chrome_options)
 
