@@ -129,6 +129,6 @@ def test_dashboard_link_opens(browser):
 
 
 def test_logout(browser):
-    user_menu = UserMenu(browser, LOGIN_URL)
+    user_menu = UserMenu(browser, PLANNERS_URL)
     user_menu.logout()
     assert browser.current_url == LOGIN_URL
