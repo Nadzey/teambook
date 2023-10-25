@@ -51,7 +51,6 @@ class Header:
         return self.browser.find_element(*self.user_menu)
 
     def open_user_menu(self):
-        wait = WebDriverWait(self.browser, 10)
         user_menu_button = self.browser.find_element(*self.open_menu_button)
         user_menu_button.click()
         time.sleep(3)
@@ -185,8 +184,8 @@ class UserMenu:
         return user_menu.find_elements(By.TAG_NAME, "a") if user_menu else []
 
     def user_menu_link_text(self, number):
-        elements = self.user_menu_links()
-        return elements[number - 1].text
+        elements = self.browser.find_elements(*self.user_menu)[0].find_elements(By.TAG_NAME, "a")[number - 1]
+        return elements.text
 
     def my_week_link_open(self):
         self.header_instance.open_user_menu()
