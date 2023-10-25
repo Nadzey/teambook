@@ -10,18 +10,20 @@ import chromedriver_autoinstaller
 
 
 @pytest.fixture(scope="session")
-def browser():
-
+def browser(request):
     chromedriver_autoinstaller.install() 
 
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-extensions')
-    driver = Chrome(options=chrome_options)
+    chrome_options.add_argument('--log-level=3') 
+    
+    if request.config.getoption("--headed"):
+        chrome_options.add_argument('--disable-extensions')
+    else:
+        chrome_options.add_argument('--headless')
 
+    driver = Chrome(options=chrome_options)
     driver.maximize_window()
-    driver.get('https://google.com')
     screenshot_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "result")
     screenshot_num = 0
     yield driver
@@ -34,6 +36,8 @@ def browser():
     driver.quit()
     # driver.delete_all_cookies()
 
+def pytest_addoption(parser):
+    parser.addoption("--headed", action="store_true", help="Run tests in headed mode")
 
 @pytest.fixture(scope="session")
 def urls():
