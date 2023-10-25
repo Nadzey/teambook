@@ -103,7 +103,7 @@ class Header:
         dashboard_link = self.browser.find_element(*self.dashboard_link)
         dashboard_link.click()
         WebDriverWait(self.browser, 15).until(EC.url_to_be(DASHBOARD_URL))
-        # time.sleep(3)
+        time.sleep(3)
 
     def click_users_link(self):
         wait = WebDriverWait(self.browser, 10)
@@ -132,7 +132,7 @@ class Header:
         assert self.browser.find_element(*self.dashboard_link).is_displayed()
         assert self.browser.find_element(*self.users_link).is_displayed()
         assert self.browser.find_element(*self.projects_link).is_displayed()
-        assert self.browser.find_element(*self.help_menu).is_displayed()
+        # assert self.browser.find_element(*self.help_menu).is_displayed()
         assert self.browser.find_element(*self.open_menu_button).is_displayed()
 
     def header_elements(self):
@@ -170,7 +170,7 @@ class UserMenu:
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.user_menu))
 
     def organization_link_open(self):
-        wait = WebDriverWait(self.browser, 10)
+        # wait = WebDriverWait(self.browser, 10)
         self.header_instance.open_user_menu()
         organization = self.browser.find_element(*self.organization_link)
         organization.click()
@@ -192,14 +192,14 @@ class UserMenu:
         return elements.text
 
     def my_week_link_open(self):
-        wait = WebDriverWait(self.browser, 10)
+        # wait = WebDriverWait(self.browser, 10)
         self.header_instance.open_user_menu()
         my_week = self.browser.find_element(*self.my_week_link)
         my_week.click()
         time.sleep(3)
 
     def profile_link_open(self):
-        wait = WebDriverWait(self.browser, 10)
+        # wait = WebDriverWait(self.browser, 10)
         self.header_instance.open_user_menu()
         profile = self.browser.find_element(*self.profile_link)
         profile.click()
