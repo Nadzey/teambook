@@ -142,8 +142,7 @@ class Header:
         wait = WebDriverWait(self.browser, 10)
         elements = self.header_elements().find_elements(By.XPATH, "//a | //img | //button")
         return elements[number - 1].text
-
-    
+   
     def logout(self):
         wait = WebDriverWait(self.browser, 10)
         self.open_user_menu()
@@ -231,8 +230,6 @@ class HelpMenu:
         elements = help_menu.find_elements(By.TAG_NAME, "a") if help_menu else []
         text_list = [element.text.strip() for element in elements]
         return text_list
-
-
 
     def help_menu_links_count(self):
         help_menu = self.browser.find_element(*self.help_menu1)

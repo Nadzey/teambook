@@ -1,7 +1,6 @@
 import pytest
 import os
 from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.service import Service
 from pages.login_page import LoginPage
 from urls import LOGIN_URL
 import time
@@ -36,8 +35,10 @@ def browser(request):
     driver.quit()
     # driver.delete_all_cookies()
 
+
 def pytest_addoption(parser):
     parser.addoption("--headed", action="store_true", help="Run tests in headed mode")
+
 
 @pytest.fixture(scope="session")
 def urls():

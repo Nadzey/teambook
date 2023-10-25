@@ -31,3 +31,4 @@ class HeaderLocators:
     HELP1 = [By.CLASS_NAME, "MuiList-root.MuiList-padding.MuiMenu-list.css-r8u8y9"]
     GETTING_STARTED = (By.CSS_SELECTOR, "onboarding__footer button")
     BACKGROUND = (By.CLASS_NAME, "MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-esi9ax")
+    

@@ -19,7 +19,6 @@ def test_header_block_links(browser, valid_email, valid_password, login_page, ur
     assert header.header_block_link_text(3) == dashboard_text
     assert header.header_block_link_text(4) == users_text
     assert header.header_block_link_text(5) == projects_text
-
     assert "planners" in browser.current_url
 
 
@@ -118,6 +117,7 @@ def test_organization_link_transfer_user_to_correct_URL(browser):
     # Expected result
     assert browser.current_url == SETTINGS_SETTINGS_URL
 
+
 # def test_help_menu_links_present(browser, knowledge_text, contact_us_text, roadmap_text, suggest_feature_text):
 #     # steps
 #     header = Header(browser, PLANNERS_URL)
@@ -133,7 +133,6 @@ def test_organization_link_transfer_user_to_correct_URL(browser):
 #     assert text_list[1] == contact_us_text
 #     assert text_list[2] == suggest_feature_text
 #     assert text_list[3] == roadmap_text
-
 
 
 def test_logout(browser):

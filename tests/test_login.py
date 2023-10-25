@@ -12,7 +12,6 @@ def test_valid_login(browser, valid_email, valid_password, login_page):
     assert "planners" in browser.current_url
     # logout
     header = Header(browser, PLANNERS_URL)
-
     header.logout()
 
 
