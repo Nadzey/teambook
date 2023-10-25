@@ -26,7 +26,6 @@ def test_elements_present_in_header(browser, planning_text, actuals_text, dashbo
                                     user_menu_text):
     # steps
     header = Header(browser, PLANNERS_URL)
-    header.load()
     header.verify_elements_present()
     # Expected result
     assert header.header_elements_text(3) == planning_text
