@@ -37,6 +37,9 @@ def browser(request):
         if take_screenshot_on_failure:
             if not os.path.exists(screenshot_dir):
                 os.makedirs(screenshot_dir)
+            for filename in os.listdir(screenshot_dir):
+                if filename.startswith("screenshot_") and filename.endswith(".png"):
+                    os.remove(os.path.join(screenshot_dir, filename))
             while os.path.exists(os.path.join(screenshot_dir, f"screenshot_{screenshot_num}.png")):
                 screenshot_num += 1
             screenshot_name = f"screenshot_{screenshot_num}.png"
@@ -51,7 +54,6 @@ def pytest_exception_interact(node, call, report):
     if report.failed:
         take_screenshot_on_failure = True
     return None
-
 
 
 def pytest_addoption(parser):

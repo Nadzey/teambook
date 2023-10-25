@@ -40,14 +40,14 @@ def test_elements_present_in_header(browser, planning_text, actuals_text, dashbo
 def test_user_menu_links_present(browser, profile_text, my_week_text, organization_text):
     # steps
     header_instance = Header(browser, PLANNERS_URL)
-    user_menu_instance = UserMenu(browser, PLANNERS_URL)
+    user_menu = UserMenu(browser, PLANNERS_URL)
     # header_instance.load()
     header_instance.open_user_menu()
     # Expected result
-    assert user_menu_instance.user_menu_links_count() == 7
-    assert user_menu_instance.user_menu_link_text(1) == profile_text
-    assert user_menu_instance.user_menu_link_text(2) == my_week_text
-    assert user_menu_instance.user_menu_link_text(3) == organization_text
+    assert user_menu.user_menu_links_count() == 7
+    assert user_menu.user_menu_link_text(1) == profile_text
+    assert user_menu.user_menu_link_text(2) == my_week_text
+    assert user_menu.user_menu_link_text(3) == organization_text
 
 
 def test_project_link_opens(browser):

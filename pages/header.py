@@ -29,6 +29,7 @@ class Header:
         self.logout_button = HeaderLocators.LOGOUT_BUTTON
 
     def load(self):
+        wait = WebDriverWait(self.browser, 10)
         self.browser.get(self.urls)
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.header_logo))
 
@@ -51,6 +52,7 @@ class Header:
         return self.browser.find_element(*self.user_menu)
 
     def open_user_menu(self):
+        wait = WebDriverWait(self.browser, 10)
         user_menu_button = self.browser.find_element(*self.open_menu_button)
         user_menu_button.click()
         time.sleep(3)
@@ -163,6 +165,7 @@ class UserMenu:
         self.open_menu_button = HeaderLocators.OPEN_MENU_BUTTON
 
     def load(self):
+        wait = WebDriverWait(self.browser, 10)
         self.browser.get(self.urls)
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.user_menu))
 
@@ -184,16 +187,19 @@ class UserMenu:
         return user_menu.find_elements(By.TAG_NAME, "a") if user_menu else []
 
     def user_menu_link_text(self, number):
+        wait = WebDriverWait(self.browser, 10)
         elements = self.browser.find_elements(*self.user_menu)[0].find_elements(By.TAG_NAME, "a")[number - 1]
         return elements.text
 
     def my_week_link_open(self):
+        wait = WebDriverWait(self.browser, 10)
         self.header_instance.open_user_menu()
         my_week = self.browser.find_element(*self.my_week_link)
         my_week.click()
         time.sleep(3)
 
     def profile_link_open(self):
+        wait = WebDriverWait(self.browser, 10)
         self.header_instance.open_user_menu()
         profile = self.browser.find_element(*self.profile_link)
         profile.click()
@@ -215,6 +221,7 @@ class HelpMenu:
         self.help_menu_button = HeaderLocators.HELP
 
     def load(self):
+        wait = WebDriverWait(self.browser, 10)
         self.browser.get(self.urls)
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.help_menu1))
 
@@ -231,6 +238,7 @@ class HelpMenu:
         return text_list
 
     def help_menu_links_count(self):
+        wait = WebDriverWait(self.browser, 10)
         help_menu = self.browser.find_element(*self.help_menu1)
         elements = help_menu.find_elements(By.TAG_NAME, "a") if help_menu else []
         print(f"Number of elements in help menu: {len(elements)}")
