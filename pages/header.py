@@ -74,6 +74,7 @@ class Header:
         return len(self.header_links_block().find_elements(By.TAG_NAME, "a"))
 
     def header_block_link_text(self, number): 
+        wait = WebDriverWait(self.browser, 10)
         element = self.header_links_block().find_elements(By.TAG_NAME, "a")[number - 1]
         return element.text
 
