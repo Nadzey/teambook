@@ -1,37 +1,68 @@
 import pytest
 import os
 from selenium.webdriver import Chrome
-from selenium.webdriver.chrome.service import Service
 from pages.login_page import LoginPage
 from urls import LOGIN_URL
 import time
 from selenium.webdriver.chrome.options import Options
-
+import chromedriver_autoinstaller
+from _pytest.config import ExitCode
 
 
 @pytest.fixture(scope="session")
-def browser():
-    chromedriver_path = 'C:/projects/webdrivers/chromedriver-win64/chromedriver.exe'
-    service = Service(chromedriver_path)
+def browser(request):
+    chromedriver_autoinstaller.install() 
 
     chrome_options = Options()
     chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--disable-extensions')
-    driver = Chrome(service=service, options=chrome_options)
+    chrome_options.add_argument('--log-level=3') 
+    chrome_options.add_argument('--window-size=1920,1080')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--remote-debugging-port=9222')
+    chrome_options.add_argument('--enable-javascript')
+    chrome_options.add_argument('--ignore-certificate-errors')
+    chrome_options.add_argument('--allow-insecure-localhost')
+    
+    if request.config.getoption("--headed"):
+        chrome_options.add_argument('--disable-extensions')
+    else:
+        chrome_options.add_argument('--headless')
 
+    driver = Chrome(options=chrome_options)
     driver.maximize_window()
-    driver.get('https://google.com')
-    screenshot_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "result")
+    
+    take_screenshot_on_failure = False
+    screenshot_dir = "" 
     screenshot_num = 0
+
+    def finalize():
+        nonlocal take_screenshot_on_failure
+        nonlocal screenshot_dir
+        nonlocal screenshot_num
+        if take_screenshot_on_failure:
+            if not os.path.exists(screenshot_dir):
+                os.makedirs(screenshot_dir)
+            for filename in os.listdir(screenshot_dir):
+                if filename.startswith("screenshot_") and filename.endswith(".png"):
+                    os.remove(os.path.join(screenshot_dir, filename))
+            while os.path.exists(os.path.join(screenshot_dir, f"screenshot_{screenshot_num}.png")):
+                screenshot_num += 1
+            screenshot_name = f"screenshot_{screenshot_num}.png"
+            driver.save_screenshot(os.path.join(screenshot_dir, screenshot_name))
+        driver.quit()
+
+    request.addfinalizer(finalize)
     yield driver
-    if not os.path.exists(screenshot_dir):
-        os.makedirs(screenshot_dir)
-    while os.path.exists(os.path.join(screenshot_dir, f"screenshot_{screenshot_num}.png")):
-        screenshot_num += 1
-    screenshot_name = f"screenshot_{screenshot_num}.png"
-    driver.save_screenshot(os.path.join(screenshot_dir, screenshot_name))
-    driver.quit()
-    # driver.delete_all_cookies()
+
+def pytest_exception_interact(node, call, report):
+    global take_screenshot_on_failure
+    if report.failed:
+        take_screenshot_on_failure = True
+    return None
+
+
+def pytest_addoption(parser):
+    parser.addoption("--headed", action="store_true", help="Run tests in headed mode")
 
 
 @pytest.fixture(scope="session")
