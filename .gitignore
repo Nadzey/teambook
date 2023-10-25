@@ -3,4 +3,5 @@
 /workspace.xml
 .pyc
 .env
-.pytest_cache\v\cashe
+/.pytest_cache/
+/_pycach_/

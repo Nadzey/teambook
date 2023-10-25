@@ -6,12 +6,12 @@ from dotenv import load_dotenv
 from pages.login_page import LoginPage
 
 load_dotenv()
-
+VALID_EMAIL = os.environ["VALID_EMAIL"]
+VALID_PASSWORD = os.environ["VALID_PASSWORD"]
 
 def test_valid_login(browser, login_page):
     # Preconditions
-    VALID_EMAIL = os.getenv("VALID_EMAIL")
-    VALID_PASSWORD = os.getenv("VALID_PASSWORD")
+   
     # Steps
     # login_page = LoginPage(browser, LOGIN_URL)
     # login_page.load()
@@ -52,7 +52,7 @@ def test_blank_emailPassword_login(browser, login_page, error_message, email, pa
 @pytest.mark.parametrize("email", [""])
 def test_blank_email_login(browser, login_page, error_message, email, valid_password):
     # Preconditions
-    password = valid_password
+    password = VALID_PASSWORD
     # Steps
     login_page.login(email, password)
     # Expected result
@@ -62,7 +62,7 @@ def test_blank_email_login(browser, login_page, error_message, email, valid_pass
 @pytest.mark.parametrize("password", [""])
 def test_blank_password_login(browser, login_page, error_message, password, valid_email):
     # Preconditions
-    email = valid_email
+    email = VALID_EMAIL
     # Steps
     login_page.login(email, password)
     # Expected result
