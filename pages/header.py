@@ -29,7 +29,6 @@ class Header:
         self.logout_button = HeaderLocators.LOGOUT_BUTTON
 
     def load(self):
-        wait = WebDriverWait(self.browser, 10)
         self.browser.get(self.urls)
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.header_logo))
 
@@ -72,12 +71,11 @@ class Header:
         return self.browser.find_element(*self.header_block)
 
     def header_block_links_count(self):
-        wait = WebDriverWait(self.browser, 10)
         return len(self.header_links_block().find_elements(By.TAG_NAME, "a"))
 
-    def header_block_link_text(self, number):
-        wait = WebDriverWait(self.browser, 10)
-        return self.header_links_block().find_elements(By.TAG_NAME, "a")[number - 1].text
+    def header_block_link_text(self, number): 
+        element = self.header_links_block().find_elements(By.TAG_NAME, "a")[number - 1]
+        return element.text
 
     def click_planning_link(self):
         wait = WebDriverWait(self.browser, 10)
@@ -187,7 +185,6 @@ class UserMenu:
         return user_menu.find_elements(By.TAG_NAME, "a") if user_menu else []
 
     def user_menu_link_text(self, number):
-        wait = WebDriverWait(self.browser, 10)
         elements = self.user_menu_links()
         return elements[number - 1].text
 

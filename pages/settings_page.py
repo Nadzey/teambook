@@ -15,13 +15,11 @@ class SettingsPage:
         self.delete_account_button = SettingsPageLocators.DELETE_ACCOUNT_BUTTON
 
     def load(self):
-        wait = WebDriverWait(self.browser, 10)
         self.browser.get(self.url)
         WebDriverWait(self.browser, 10).until(
             EC.presence_of_element_located(SettingsPageLocators.DELETE_ORGANIZATION_P))
 
     def delete_company(self, company_name):
-        wait = WebDriverWait(self.browser, 10)
         self.browser.find_element(*self.delete_p).click()
         self.browser.find_element(*self.delete_button).click()
         self.browser.find_element(*self.company_name_input).send_keys(company_name)
