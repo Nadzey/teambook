@@ -43,4 +43,11 @@ jobs:
       run: |
         pytest
 
+    - name: Artifacts
+      uses: actions/upload-artifact@v2.2.4
+      if: failure()
+      with:
+        name: result
+        path: ./result
+
 
