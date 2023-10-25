@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 from selenium.webdriver.common.by import By
 from urls import ACTUALS_URL, PLANNERS_URL, USER_URL, DASHBOARD_URL, PROJECT_URL
-from selenium.webdriver.support.ui import WebDriverWait
 
 
 class Header:
