@@ -1,13 +1,21 @@
-from urls import PLANNERS_URL
+from urls import PLANNERS_URL, LOGIN_URL
 from pages.header import Header
 import pytest
+import os
+from dotenv import load_dotenv
+from pages.login_page import LoginPage
+
+load_dotenv()
 
 
-def test_valid_login(browser, valid_email, valid_password, login_page):
+def test_valid_login(browser, login_page):
     # Preconditions
-    email, password = valid_email, valid_password
+    VALID_EMAIL = os.getenv("VALID_EMAIL")
+    VALID_PASSWORD = os.getenv("VALID_PASSWORD")
     # Steps
-    login_page.login(email, password)
+    # login_page = LoginPage(browser, LOGIN_URL)
+    # login_page.load()
+    login_page.login(VALID_EMAIL, VALID_PASSWORD)
     # Expected result
     assert "planners" in browser.current_url
     # logout

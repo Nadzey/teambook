@@ -17,6 +17,11 @@ def browser(request):
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--log-level=3') 
     chrome_options.add_argument('--window-size=1920,1080')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--remote-debugging-port=9222')
+    chrome_options.add_argument('--enable-javascript')
+    chrome_options.add_argument('--ignore-certificate-errors')
+    chrome_options.add_argument('--allow-insecure-localhost')
     
     if request.config.getoption("--headed"):
         chrome_options.add_argument('--disable-extensions')
