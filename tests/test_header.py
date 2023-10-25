@@ -2,6 +2,7 @@ from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, MY_WEEK_URL, 
     LOGIN_URL, DASHBOARD_URL
 from pages.header import Header, UserMenu, HelpMenu
 import time
+from conftest import authenticated_user
 
 
 def test_header_block_links(browser, valid_email, valid_password, login_page, urls, planning_text, actuals_text,
@@ -11,6 +12,7 @@ def test_header_block_links(browser, valid_email, valid_password, login_page, ur
     login_page.login(email, password)
     # steps
     header = Header(browser, PLANNERS_URL)
+    header.load()
     # Expected result
     assert header.header_block_links_count() == 5
     assert header.header_block_link_text(1) == planning_text
@@ -26,6 +28,7 @@ def test_elements_present_in_header(browser, planning_text, actuals_text, dashbo
                                     user_menu_text):
     # steps
     header = Header(browser, PLANNERS_URL)
+    header.load()
     header.verify_elements_present()
     # Expected result
     assert header.header_elements_text(3) == planning_text

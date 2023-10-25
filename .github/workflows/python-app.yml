@@ -22,7 +22,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: "3.9"
     - name: Install dependencies
@@ -42,10 +42,5 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
-    - name: Create test summary
-      uses: test-summary/action@v2.0
-      if: always()
-      with:
-        paths: reports/*.xml
 
 

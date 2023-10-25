@@ -29,6 +29,7 @@ class Header:
         self.logout_button = HeaderLocators.LOGOUT_BUTTON
 
     def load(self):
+        wait = WebDriverWait(self.browser, 10)
         self.browser.get(self.urls)
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.header_logo))
 
