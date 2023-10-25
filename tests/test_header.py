@@ -2,7 +2,6 @@ from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, MY_WEEK_URL, 
     LOGIN_URL, DASHBOARD_URL
 from pages.header import Header, UserMenu, HelpMenu
 import time
-from conftest import authenticated_user
 
 
 def test_header_block_links(browser, valid_email, valid_password, login_page, urls, planning_text, actuals_text,
