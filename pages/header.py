@@ -139,11 +139,11 @@ class Header:
         elements = self.header_elements().find_elements(By.XPATH, "//a | //img | //button")
         return elements[number - 1].text
    
-    def logout(self):
-        wait = WebDriverWait(self.browser, 10)
-        self.open_user_menu()
-        logout = self.browser.find_element(*self.logout_button)
-        logout.click()
+    # def logout(self):
+    #     wait = WebDriverWait(self.browser, 10)
+    #     self.open_user_menu()
+    #     logout = self.browser.find_element(*self.logout_button)
+    #     logout.click()
 
 
 class UserMenu:
