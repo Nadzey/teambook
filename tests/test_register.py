@@ -27,5 +27,5 @@ def test_create_organization_with_existing_data(browser, login_page, registratio
     register_page_instance.create_organization()
     # Expected result
     assert "planners" not in browser.current_url
-
     assert register_page_instance.get_error_message() == error_message1
+    

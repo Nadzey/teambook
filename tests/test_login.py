@@ -1,18 +1,25 @@
-from urls import PLANNERS_URL
+from urls import PLANNERS_URL, LOGIN_URL
 from pages.header import Header
 import pytest
+import os
+from dotenv import load_dotenv
+from pages.login_page import LoginPage
 
+load_dotenv()
+VALID_EMAIL = os.environ["VALID_EMAIL"]
+VALID_PASSWORD = os.environ["VALID_PASSWORD"]
 
-def test_valid_login(browser, valid_email, valid_password, login_page):
+def test_valid_login(browser, login_page):
     # Preconditions
-    email, password = valid_email, valid_password
+   
     # Steps
-    login_page.login(email, password)
+    # login_page = LoginPage(browser, LOGIN_URL)
+    # login_page.load()
+    login_page.login(VALID_EMAIL, VALID_PASSWORD)
     # Expected result
     assert "planners" in browser.current_url
     # logout
     header = Header(browser, PLANNERS_URL)
-
     header.logout()
 
 
@@ -45,7 +52,7 @@ def test_blank_emailPassword_login(browser, login_page, error_message, email, pa
 @pytest.mark.parametrize("email", [""])
 def test_blank_email_login(browser, login_page, error_message, email, valid_password):
     # Preconditions
-    password = valid_password
+    password = VALID_PASSWORD
     # Steps
     login_page.login(email, password)
     # Expected result
@@ -55,7 +62,7 @@ def test_blank_email_login(browser, login_page, error_message, email, valid_pass
 @pytest.mark.parametrize("password", [""])
 def test_blank_password_login(browser, login_page, error_message, password, valid_email):
     # Preconditions
-    email = valid_email
+    email = VALID_EMAIL
     # Steps
     login_page.login(email, password)
     # Expected result

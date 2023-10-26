@@ -11,6 +11,7 @@ def test_header_block_links(browser, valid_email, valid_password, login_page, ur
     login_page.login(email, password)
     # steps
     header = Header(browser, PLANNERS_URL)
+    header.load()
     # Expected result
     assert header.header_block_links_count() == 5
     assert header.header_block_link_text(1) == planning_text
@@ -18,7 +19,6 @@ def test_header_block_links(browser, valid_email, valid_password, login_page, ur
     assert header.header_block_link_text(3) == dashboard_text
     assert header.header_block_link_text(4) == users_text
     assert header.header_block_link_text(5) == projects_text
-
     assert "planners" in browser.current_url
 
 
@@ -39,14 +39,14 @@ def test_elements_present_in_header(browser, planning_text, actuals_text, dashbo
 def test_user_menu_links_present(browser, profile_text, my_week_text, organization_text):
     # steps
     header_instance = Header(browser, PLANNERS_URL)
-    user_menu_instance = UserMenu(browser, PLANNERS_URL)
+    user_menu = UserMenu(browser, PLANNERS_URL)
     # header_instance.load()
     header_instance.open_user_menu()
     # Expected result
-    assert user_menu_instance.user_menu_links_count() == 7
-    assert user_menu_instance.user_menu_link_text(1) == profile_text
-    assert user_menu_instance.user_menu_link_text(2) == my_week_text
-    assert user_menu_instance.user_menu_link_text(3) == organization_text
+    assert user_menu.user_menu_links_count() == 7
+    assert user_menu.user_menu_link_text(1) == profile_text
+    assert user_menu.user_menu_link_text(2) == my_week_text
+    assert user_menu.user_menu_link_text(3) == organization_text
 
 
 def test_project_link_opens(browser):
@@ -76,6 +76,15 @@ def test_users_link_opens(browser):
     assert browser.current_url == USER_URL
 
 
+def test_actual_link_opens(browser):
+    # steps
+    header = Header(browser, ACTUALS_URL)
+    header.load()
+    header.click_actual_link()
+    # Expected result
+    assert browser.current_url == ACTUALS_URL
+
+
 def test_dashboard_link_opens(browser):
     # steps
     header = Header(browser, DASHBOARD_URL)
@@ -83,14 +92,6 @@ def test_dashboard_link_opens(browser):
     header.click_dashboard_link()
     # Expected result
     assert browser.current_url == DASHBOARD_URL
-
-
-# def test_actual_link_opens(browser):
-#     # steps
-#     header_instance = Header(browser, ACTUALS_URL)
-#     header_instance.click_actual_link()
-#     # Expected result
-#     assert browser.current_url == ACTUALS_URL
 
 
 def test_my_week_link_transfer_user_to_correct_URL(browser):
@@ -116,6 +117,7 @@ def test_organization_link_transfer_user_to_correct_URL(browser):
     # Expected result
     assert browser.current_url == SETTINGS_SETTINGS_URL
 
+
 # def test_help_menu_links_present(browser, knowledge_text, contact_us_text, roadmap_text, suggest_feature_text):
 #     # steps
 #     header = Header(browser, PLANNERS_URL)
@@ -131,7 +133,6 @@ def test_organization_link_transfer_user_to_correct_URL(browser):
 #     assert text_list[1] == contact_us_text
 #     assert text_list[2] == suggest_feature_text
 #     assert text_list[3] == roadmap_text
-
 
 
 def test_logout(browser):

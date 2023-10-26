@@ -15,9 +15,11 @@ class LoginPage:
         self.error_message = LoginPageLocators.ERROR_MESSAGE
         self.create_organization = LoginPageLocators.CREATE_ORGANIZATION_LINK
 
+
     def load(self):
         self.browser.get(self.url)
         WebDriverWait(self.browser, 10).until(EC.presence_of_element_located(self.email_input))
+
 
     def login(self, email, password):
         self.browser.find_element(*self.email_input).send_keys(email)
@@ -25,8 +27,10 @@ class LoginPage:
         self.browser.find_element(*self.login_button).click()
         time.sleep(3)
 
+
     def get_error_message(self):
         return self.browser.find_element(*LoginPageLocators.ERROR_MESSAGE).text
+
 
     def create_new_organization(self):
         self.browser.find_element(*LoginPageLocators.CREATE_ORGANIZATION_LINK).click()

@@ -29,84 +29,97 @@ class Header:
         self.logout_button = HeaderLocators.LOGOUT_BUTTON
 
     def load(self):
+        wait = WebDriverWait(self.browser, 10)
         self.browser.get(self.urls)
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.header_logo))
 
     def is_header_logo_displayed(self):
+        wait = WebDriverWait(self.browser, 10)
         return self.browser.find_element(*self.header_logo).is_displayed()
 
     def click_on_header_logo(self):
+        wait = WebDriverWait(self.browser, 10)
         header_logo = self.browser.find_element(*self.header_logo)
         header_logo.click()
         time.sleep(3)
 
     def close_getting_started(self):
+        wait = WebDriverWait(self.browser, 10)
         self.browser.find_element(*self.getting_start).click()
 
     def user_menu(self):
+        wait = WebDriverWait(self.browser, 10)
         return self.browser.find_element(*self.user_menu)
 
     def open_user_menu(self):
+        wait = WebDriverWait(self.browser, 10)
         user_menu_button = self.browser.find_element(*self.open_menu_button)
         user_menu_button.click()
         time.sleep(3)
 
     def click_help_menu(self):
+        wait = WebDriverWait(self.browser, 10)
         help_menu = self.browser.find_element(*self.help_menu)
         help_menu.click()
-        time.sleep(3)
 
     def onboarding_header(self):
+        wait = WebDriverWait(self.browser, 10)
         return self.browser.find_element(*HeaderLocators.ONBOARDING_HEADER)
 
     def header_links_block(self):
+        wait = WebDriverWait(self.browser, 10)
         return self.browser.find_element(*self.header_block)
 
     def header_block_links_count(self):
         return len(self.header_links_block().find_elements(By.TAG_NAME, "a"))
 
-    def header_block_link_text(self, number):
-        return self.header_links_block().find_elements(By.TAG_NAME, "a")[number - 1].text
+    def header_block_link_text(self, number): 
+        wait = WebDriverWait(self.browser, 10)
+        element = self.header_links_block().find_elements(By.TAG_NAME, "a")[number - 1]
+        return element.text
 
     def click_planning_link(self):
+        wait = WebDriverWait(self.browser, 10)
         planning_link = self.browser.find_element(*self.planning_link)
         planning_link.click()
         WebDriverWait(self.browser, 15).until(EC.url_to_be(PLANNERS_URL))
-        time.sleep(3)
 
     def click_actual_link(self):
+        wait = WebDriverWait(self.browser, 10)
         actual_link = self.browser.find_element(*self.actuals_link)
         actual_link.click()
-        WebDriverWait(self.browser, 15).until(EC.url_to_be(ACTUALS_URL))
-
-        # dialog = WebDriverWait(self.browser, 15).until(
-        #     EC.visibility_of_element_located((self.mui_dialog)))
-        # close_button = dialog.find_element(*self.mui_dialog_close)
-        # close_button.click()
+        dialog = WebDriverWait(self.browser, 15).until(
+            EC.visibility_of_element_located((self.mui_dialog_close)))
+        dialog.click()
         WebDriverWait(self.browser, 30).until(EC.url_to_be(ACTUALS_URL))
+        time.sleep(3)
 
     def click_dashboard_link(self):
+        wait = WebDriverWait(self.browser, 10)
         dashboard_link = self.browser.find_element(*self.dashboard_link)
         dashboard_link.click()
         WebDriverWait(self.browser, 15).until(EC.url_to_be(DASHBOARD_URL))
         time.sleep(3)
 
     def click_users_link(self):
+        wait = WebDriverWait(self.browser, 10)
         users_link = self.browser.find_element(*self.users_link)
         users_link.click()
         WebDriverWait(self.browser, 15).until(EC.url_to_be(USER_URL))
 
     def click_projects_link(self, url=PROJECT_URL):
+        wait = WebDriverWait(self.browser, 10)
         projects_link = self.browser.find_element(*self.projects_link)
         projects_link.click()
         WebDriverWait(self.browser, 15).until(EC.url_to_be(PROJECT_URL))
 
     def open_help_menu(self):
+        wait = WebDriverWait(self.browser, 10)
         element = self.browser.find_element(*self.help_menu)
         element.click()
-        time.sleep(3)
 
     def verify_elements_present(self):
+        wait = WebDriverWait(self.browser, 10)
         assert self.browser.find_element(*self.header).is_displayed()
         assert self.browser.find_element(*self.header_logo).is_displayed()
         assert self.browser.find_element(*self.planning_link).is_displayed()
@@ -118,14 +131,16 @@ class Header:
         assert self.browser.find_element(*self.open_menu_button).is_displayed()
 
     def header_elements(self):
+        wait = WebDriverWait(self.browser, 10)
         return self.browser.find_element(*self.header)
 
     def header_elements_text(self, number):
+        wait = WebDriverWait(self.browser, 10)
         elements = self.header_elements().find_elements(By.XPATH, "//a | //img | //button")
         return elements[number - 1].text
-
-    
+   
     def logout(self):
+        wait = WebDriverWait(self.browser, 10)
         self.open_user_menu()
         logout = self.browser.find_element(*self.logout_button)
         logout.click()
@@ -145,6 +160,7 @@ class UserMenu:
         self.open_menu_button = HeaderLocators.OPEN_MENU_BUTTON
 
     def load(self):
+        wait = WebDriverWait(self.browser, 10)
         self.browser.get(self.urls)
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.user_menu))
 
@@ -155,16 +171,19 @@ class UserMenu:
         time.sleep(3)
 
     def user_menu_links_count(self):
+        wait = WebDriverWait(self.browser, 10)
         links = self.browser.find_elements(*self.user_menu)[0].find_elements(By.TAG_NAME, "a")
         return len(links)
 
     def user_menu_links(self):
+        wait = WebDriverWait(self.browser, 10)
         user_menu = self.browser.find_element(*self.user_menu)
         return user_menu.find_elements(By.TAG_NAME, "a") if user_menu else []
 
     def user_menu_link_text(self, number):
-        elements = self.user_menu_links()
-        return elements[number - 1].text
+        wait = WebDriverWait(self.browser, 10)
+        elements = self.browser.find_elements(*self.user_menu)[0].find_elements(By.TAG_NAME, "a")[number - 1]
+        return elements.text
 
     def my_week_link_open(self):
         self.header_instance.open_user_menu()
@@ -194,22 +213,24 @@ class HelpMenu:
         self.help_menu_button = HeaderLocators.HELP
 
     def load(self):
+        wait = WebDriverWait(self.browser, 10)
         self.browser.get(self.urls)
         WebDriverWait(self.browser, 15).until(EC.presence_of_element_located(self.help_menu1))
 
     def help_menu_links(self):
+        wait = WebDriverWait(self.browser, 10)
         elements = self.browser.find_elements(*self.help_menu1) 
         return elements
 
     def help_menu_link_text(self):
+        wait = WebDriverWait(self.browser, 10)
         help_menu = self.browser.find_element(*self.help_menu1)
         elements = help_menu.find_elements(By.TAG_NAME, "a") if help_menu else []
         text_list = [element.text.strip() for element in elements]
         return text_list
 
-
-
     def help_menu_links_count(self):
+        wait = WebDriverWait(self.browser, 10)
         help_menu = self.browser.find_element(*self.help_menu1)
         elements = help_menu.find_elements(By.TAG_NAME, "a") if help_menu else []
         print(f"Number of elements in help menu: {len(elements)}")
