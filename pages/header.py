@@ -127,7 +127,7 @@ class Header:
         assert self.browser.find_element(*self.dashboard_link).is_displayed()
         assert self.browser.find_element(*self.users_link).is_displayed()
         assert self.browser.find_element(*self.projects_link).is_displayed()
-        # assert self.browser.find_element(*self.help_menu).is_displayed()
+        assert self.browser.find_element(*self.help_menu).is_displayed()
         assert self.browser.find_element(*self.open_menu_button).is_displayed()
 
     def header_elements(self):
