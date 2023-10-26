@@ -21,7 +21,7 @@ class Header:
         self.actuals_link = HeaderLocators.ACTUALS_LINK
         self.mui_dialog_close = HeaderLocators.MUI_DIALOG_CLOSE
         self.mui_dialog = HeaderLocators.MUI_DIALOG
-        # self.help_menu = HeaderLocators.HELP
+        self.help_menu = HeaderLocators.HELP
         self.header = HeaderLocators.HEADER
         self.user_menu = HeaderLocators.USER_MENU
         self.getting_start = HeaderLocators.GETTING_STARTED
@@ -139,11 +139,11 @@ class Header:
         elements = self.header_elements().find_elements(By.XPATH, "//a | //img | //button")
         return elements[number - 1].text
    
-    # def logout(self):
-    #     wait = WebDriverWait(self.browser, 10)
-    #     self.open_user_menu()
-    #     logout = self.browser.find_element(*self.logout_button)
-    #     logout.click()
+    def logout(self):
+        wait = WebDriverWait(self.browser, 10)
+        self.open_user_menu()
+        logout = self.browser.find_element(*self.logout_button)
+        logout.click()
 
 
 class UserMenu:
