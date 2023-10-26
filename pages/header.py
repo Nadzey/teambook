@@ -21,7 +21,7 @@ class Header:
         self.actuals_link = HeaderLocators.ACTUALS_LINK
         self.mui_dialog_close = HeaderLocators.MUI_DIALOG_CLOSE
         self.mui_dialog = HeaderLocators.MUI_DIALOG
-        self.help_menu = HeaderLocators.HELP
+        # self.help_menu = HeaderLocators.HELP
         self.header = HeaderLocators.HEADER
         self.user_menu = HeaderLocators.USER_MENU
         self.getting_start = HeaderLocators.GETTING_STARTED
