@@ -7,6 +7,7 @@ from urls import ACTUALS_URL, PLANNERS_URL, USER_URL, DASHBOARD_URL, PROJECT_URL
 
 
 class Header:
+    
     def __init__(self, browser, url):
         self.browser = browser
         self.urls = url
