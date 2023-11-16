@@ -173,7 +173,7 @@ def projects_text():
 
 @pytest.fixture
 def user_menu_text():
-    return "John\nJS"
+    return "John"
 
 
 @pytest.fixture

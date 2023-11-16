@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from tests.loginPageLocators import LoginPageLocators
 from urls import LOGIN_URL
 import time
+from selenium.common.exceptions import TimeoutException
 
 
 class LoginPage:
@@ -22,10 +23,18 @@ class LoginPage:
 
 
     def login(self, email, password):
+        wait = WebDriverWait(self.browser, 10)
         self.browser.find_element(*self.email_input).send_keys(email)
         self.browser.find_element(*self.password_input).send_keys(password)
         self.browser.find_element(*self.login_button).click()
-        time.sleep(3)
+
+        try:
+        # Ожидаем успешного входа (URL содержит "planners")
+            wait.until(EC.url_contains("planners"))
+            print("Succesful login")
+        except TimeoutException:
+        # Если URL не содержит "planners", то считаем вход неуспешным
+            print("Login failed")
 
 
     def get_error_message(self):

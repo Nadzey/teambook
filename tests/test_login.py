@@ -13,8 +13,6 @@ def test_valid_login(browser, login_page):
     # Preconditions
    
     # Steps
-    # login_page = LoginPage(browser, LOGIN_URL)
-    # login_page.load()
     login_page.login(VALID_EMAIL, VALID_PASSWORD)
     # Expected result
     assert "planners" in browser.current_url

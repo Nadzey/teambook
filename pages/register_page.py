@@ -3,6 +3,8 @@ from urls import REGISTER_URL
 import time
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.by import By
 
 
 class RegisterPage:
@@ -47,14 +49,24 @@ class RegisterPage:
         agree_checkbox.click()
 
     def create_organization(self):
+        wait = WebDriverWait(self.browser, 10)
         create_organization_button = self.browser.find_element(*RegisterPageLocators.CREATE_ORGANIZATION_BUTTON)
         create_organization_button.click()
         time.sleep(3)
+        # try:
+        # # Ожидаем появления элемента "SKIP"
+        #     wait.until(EC.visibility_of_element_located(RegisterPageLocators.SKIP_P))
+        #     print("SKIP")
+        # except TimeoutException:
+        # # Если элемент "SKIP" не появился, то ожидаем появления элемента "ERROR MESSAGE"
+        #     wait.until(EC.visibility_of_element_located(RegisterPageLocators.ERROR_MESSAGE))
+        #     print("ERROR MESSAGE")
 
     def skip(self):
-        skip_p = self.browser.find_element(*RegisterPageLocators.SKIP_P)
+        wait = WebDriverWait(self.browser, 10)
+        skip_p = wait.until(EC.visibility_of_element_located(RegisterPageLocators.SKIP_P))
         skip_p.click()
-        time.sleep(3)
+        wait.until(EC.url_contains("planners"))
 
     def get_error_message(self):
         error_message = self.browser.find_element(*RegisterPageLocators.ERROR_MESSAGE).text

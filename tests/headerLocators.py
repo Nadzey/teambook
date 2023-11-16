@@ -2,15 +2,15 @@ from selenium.webdriver.common.by import By
 
 
 class HeaderLocators:
-    LOGO = (By.CLASS_NAME, 'header-logo')
+    LOGO = (By.CSS_SELECTOR, '[href="/planners"]')
     OPEN_MENU_BUTTON = (By.ID, 'openUserMenu')
-    LOGOUT_BUTTON = (By.XPATH, "//*[@id='header-menu']/div[3]/ul/li")
+    LOGOUT_BUTTON = (By.XPATH, '//*[@id="header-menu"]/div[3]/ul/div[4]')
     ONBOARDING_HEADER = (By.CLASS_NAME, "onboarding__header")
-    ORGANIZATION_LINK = (By.CSS_SELECTOR, '.tb__text__light-blue.col.menu__navlink.mobile_hidden:nth-child(3)')
-    PROFILE_LINK = (By.CSS_SELECTOR, '.tb__text__light-blue.col.menu__navlink.mobile_hidden:first-child')
-    MY_WEEK_LINK = (By.CSS_SELECTOR, '.tb__text__light-blue.col.menu__navlink.mobile_hidden:nth-child(2)')
+    ORGANIZATION_LINK = (By.CSS_SELECTOR, '[href="/settings"]')
+    PROFILE_LINK = (By.CSS_SELECTOR, '[href="/profile"]')
+    MY_WEEK_LINK = (By.CSS_SELECTOR, '[href="/my-week"]')
     HELP = (By.CLASS_NAME, "header__help-icon")
-    PLANNERS_LINK = (By.XPATH, "//a[normalize-space()='Planning']")
+    PLANNERS_LINK = (By.CSS_SELECTOR, '[href="/planners"]')
     DASHBOARD_LINK = (By.XPATH, "//a[normalize-space()='Dashboard']")
     USER_LINK = (By.XPATH, "//a[normalize-space()='Users']")
     PROJECT_LINK = (By.XPATH, "//a[normalize-space()='Projects']")
@@ -18,7 +18,7 @@ class HeaderLocators:
     ACTUALS_LINK = (By.PARTIAL_LINK_TEXT, 'Actuals')
     MUI_DIALOG_CLOSE = (By.XPATH, '//*[@id=":r6:"]')
     MUI_DIALOG = (By.XPATH, '//*[@id=":r6:"]')
-    HEADER = (By.CSS_SELECTOR, '.row.header')
+    HEADER = (By.CLASS_NAME, 'header__container')
     USER_MENU = [By.XPATH, "//div[@id='header-menu']//ul[@role='menu']"]
     KNOWLEDGE_BASE_LINK = (By.XPATH,
                            "//div[@id='header-help-menu']//a[@class='tb__text__light-blue col menu__navlink']["

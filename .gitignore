@@ -4,4 +4,5 @@
 .pyc
 .env
 /.pytest_cache/
-/_pycach_/
+_pycache_/
+results/

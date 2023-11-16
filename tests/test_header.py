@@ -2,13 +2,18 @@ from urls import PROJECT_URL, PLANNERS_URL, USER_URL, ACTUALS_URL, MY_WEEK_URL, 
     LOGIN_URL, DASHBOARD_URL
 from pages.header import Header, UserMenu, HelpMenu
 import time
+import os
+from dotenv import load_dotenv
+from pages.login_page import LoginPage
 
+load_dotenv()
+VALID_EMAIL = os.environ["VALID_EMAIL"]
+VALID_PASSWORD = os.environ["VALID_PASSWORD"]
 
-def test_header_block_links(browser, valid_email, valid_password, login_page, urls, planning_text, actuals_text,
+def test_header_block_links(browser, login_page, urls, planning_text, actuals_text,
                             dashboard_text, users_text, projects_text):
     # Preconditions
-    email, password = valid_email, valid_password
-    login_page.login(email, password)
+    login_page.login(VALID_EMAIL, VALID_PASSWORD)
     # steps
     header = Header(browser, PLANNERS_URL)
     header.load()
@@ -28,12 +33,12 @@ def test_elements_present_in_header(browser, planning_text, actuals_text, dashbo
     header = Header(browser, PLANNERS_URL)
     header.verify_elements_present()
     # Expected result
-    assert header.header_elements_text(3) == planning_text
-    assert header.header_elements_text(4) == actuals_text
-    assert header.header_elements_text(5) == dashboard_text
-    assert header.header_elements_text(6) == users_text
-    assert header.header_elements_text(7) == projects_text
-    assert header.header_elements_text(9) == user_menu_text
+    assert header.header_elements_text(4) == planning_text
+    assert header.header_elements_text(5) == actuals_text
+    assert header.header_elements_text(6) == dashboard_text
+    assert header.header_elements_text(7) == users_text
+    assert header.header_elements_text(8) == projects_text
+    assert header.header_elements_text(11) == user_menu_text
 
 
 def test_user_menu_links_present(browser, profile_text, my_week_text, organization_text):
