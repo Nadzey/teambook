@@ -120,6 +120,15 @@ class Header:
 
     def verify_elements_present(self):
         wait = WebDriverWait(self.browser, 10)
+        wait.until(EC.visibility_of_element_located(self.header))
+        wait.until(EC.visibility_of_element_located(self.header_logo))
+        wait.until(EC.visibility_of_element_located(self.planning_link))
+        wait.until(EC.visibility_of_element_located(self.actuals_link))
+        wait.until(EC.visibility_of_element_located(self.dashboard_link))
+        wait.until(EC.visibility_of_element_located(self.users_link))
+        wait.until(EC.visibility_of_element_located(self.projects_link))
+        wait.until(EC.visibility_of_element_located(self.help_menu))
+        wait.until(EC.visibility_of_element_located(self.open_menu_button))
         assert self.browser.find_element(*self.header).is_displayed()
         assert self.browser.find_element(*self.header_logo).is_displayed()
         assert self.browser.find_element(*self.planning_link).is_displayed()
@@ -127,7 +136,7 @@ class Header:
         assert self.browser.find_element(*self.dashboard_link).is_displayed()
         assert self.browser.find_element(*self.users_link).is_displayed()
         assert self.browser.find_element(*self.projects_link).is_displayed()
-        # assert self.browser.find_element(*self.help_menu).is_displayed()
+        assert self.browser.find_element(*self.help_menu).is_displayed()
         assert self.browser.find_element(*self.open_menu_button).is_displayed()
 
     def header_elements(self):
