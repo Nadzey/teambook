@@ -51,7 +51,7 @@ class Header:
         wait = WebDriverWait(self.browser, 10)
         user_menu_btn = wait.until(EC.element_to_be_clickable(self.open_menu_button))
         user_menu_btn.click()
-        wait.until(EC.visibility_of_element_located(self.logout_button))
+        wait.until(EC.visibility_of_element_located(self.user_menu1))
 
     def click_help_menu(self):
         wait = WebDriverWait(self.browser, 10)
@@ -117,17 +117,6 @@ class Header:
         projects_link = wait.until(EC.element_to_be_clickable(self.projects_link))
         projects_link.click()
         wait.until(EC.url_to_be(PROJECT_URL))
-
-    def open_help_menu(self):
-        wait = WebDriverWait(self.browser, 10)
-        element = wait.until(EC.element_to_be_clickable(self.help_menu))
-        self.browser.execute_script("""
-        var backdrops = document.querySelectorAll('#header-menu');
-        backdrops.forEach(function(backdrop) {
-            backdrop.style.display = 'none';
-        });
-        """)
-        element.click()
 
     def verify_elements_present(self):
         wait = WebDriverWait(self.browser, 10)
@@ -195,12 +184,6 @@ class UserMenu:
         wait = WebDriverWait(self.browser, 10)
         self.header_instance.open_user_menu()
         organization = wait.until(EC.element_to_be_clickable(self.organization_link))
-        self.browser.execute_script("""
-        var backdrops = document.querySelectorAll('.MuiBackdrop-root');
-        backdrops.forEach(function(backdrop) {
-            backdrop.style.display = 'none';
-        });
-        """)
         organization.click()
         time.sleep(3)
 

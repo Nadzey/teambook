@@ -16,7 +16,7 @@ class HeaderLocators:
     PROJECT_LINK = (By.XPATH, "//a[normalize-space()='Projects']")
     HEADER_BLOCK = (By.CLASS_NAME, "header__items.mobile_hidden")
     ACTUALS_LINK = (By.PARTIAL_LINK_TEXT, 'Actuals')
-    MUI_DIALOG_CLOSE = (By.XPATH, '//*[@id=":r6:"]')
+    MUI_DIALOG_CLOSE = (By.XPATH, '//*[@id=":rf:"]')
     MUI_DIALOG = (By.XPATH, '//*[@id=":r6:"]')
     HEADER = (By.CLASS_NAME, 'header__container')
     USER_MENU = [By.XPATH, "//div[@id='header-menu']//ul[@role='menu']"]

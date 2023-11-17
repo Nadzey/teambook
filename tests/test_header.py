@@ -84,7 +84,7 @@ def test_users_link_opens(browser):
 def test_actual_link_opens(browser):
     # steps
     header = Header(browser, ACTUALS_URL)
-    header.load()
+    # header.load()
     header.click_actual_link()
     # Expected result
     assert browser.current_url == ACTUALS_URL
