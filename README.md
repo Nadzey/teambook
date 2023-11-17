@@ -1,39 +1,39 @@
 # 📘 TeamBook
 
-## Описание Проекта 📝
-**TeamBook** - это автоматизированный тестовый проект, использующий Selenium для тестирования веб-приложений. Проект включает в себя:
+### Project Description 📝
+**TeamBook*** is an automated test project using Selenium for web application testing. The project includes:
 
-- **`pages`**: Папка с классами страниц для выполнения действий на сайте и проверки результатов.
-  - `base_page`: Базовый класс для всех страниц, реализующий общие методы.
-  - `wiki_creation_page`: Класс с методами для создания нового пространства на странице.
-- **`locators.py`**: Файл с локаторами элементов.
-- **`tests`**: Папка с тестами.
-- **`conftest.py`**: Файл с фикстурами для тестов.
-- **`results`**: Папка со скриншотами тестов.
+- **`pages`**: Folder with page classes for performing actions on the site and checking results.
+  - `base_page`: The base class for all pages, implementing common methods.
+  - `wiki_creation_page`: Class with methods for creating new space on a page.
+- **`locators.py`**: File with element locators.
+- **`tests`**: Folder with test files.
+- **`conftest.py`**: File with fixtures for tests.
+- **`results`**: Folder with test screenshots.
 
-## Установка и Настройка 🔧
+## Installation & Setup 🔧
 
-### Установка Зависимостей
+### Dependency Installation
 1. **Chromedriver Autoinstaller**
-   - Установка:
+   - Install:
      ```bash
      pip install chromedriver-autoinstaller
      ```
    - [chromedriver-autoinstaller](https://pypi.org/project/chromedriver-autoinstaller/) автоматически устанавливает Chrome WebDriver для Google Chrome.
-   - Проверка установки:
+   - Check installation:
      ```bash
      pip show chromedriver-autoinstaller
      ```
 
 2. **Python-dotenv**
-   - Установка:
+   - Install:
      ```bash
      pip install python-dotenv
      ```
-   - [python-dotenv](https://pypi.org/project/python-dotenv/) для работы с файлами `.env`.
+   - [python-dotenv](https://pypi.org/project/python-dotenv/) for managing `.env` files.
 
-### Настройка `.gitignore` 🛑
-- Добавьте следующие строки в `.gitignore`:
+### `.gitignore` Setup 🛑
+- Add the following lines to `.gitignore`:
 - add/shelf/
 - workspace.xml
 - .pyc
@@ -42,15 +42,15 @@
 - pycache/
 
 
-### Создание `.env` файла 🔒
-1. Создайте файл `.env` в корне проекта.
-2. Введите в него данные:
+### Creating `.env` файла 🔒
+1. Create a .env file in the project root.
+2. Enter the following data:
 ```
 VALID_EMAIL=your_email
 VALID_PASSWORD=your_password
 ```
 
-4. Для использования в тестах или страницах:
+4. For use in tests or pages:
 ```python
 import os
 from dotenv import load_dotenv
@@ -61,28 +61,33 @@ load_dotenv()
 ```
 
 ### GitHub Secrets 🔐
-- Добавьте данные в GitHub Secrets:
+- Add data to GitHub Secrets:
 
-1. Перейдите в `Settings > Secrets and Variables > Actions`.
-2. Создайте новый секрет репозитория.
+1. Go to `Settings > Secrets and Variables > Actions`.
+2. Create a new repository secret.
 
-### Запуск Тестов 🚀
+### Running Tests 🚀
 
-### Локальный Запуск
+### Local Execution
 
-#### Headless режим (без GUI)
-- Без отчета: ```pytest tests```
-- С отчетом: ```pytest tests --alluredir results```
-- Отдельный файл тестов: ```pytest tests/test_header.py```
+#### Headless Mode (без GUI)
+- Without report: ```pytest tests```
+- With report: ```pytest tests --alluredir results```
+- Single test file: ```pytest tests/test_header.py```
 
-#### Headed режим (с GUI)
-- Без отчета: ```pytest tests --headed```
-- С отчетом: ```pytest tests --alluredir results --headed```
-- Отдельный файл тестов: ```pytest tests/test_header.py --headed```
+#### Headed Mode (с GUI)
+- Without report:: ```pytest tests --headed```
+- With report: ```pytest tests --alluredir results --headed```
+- Single test file:  ```pytest tests/test_header.py --headed```
 
-#### Просмотр отчетов Allure 📊
-Запустите:
+#### Viewing Allure Reports 📊
+Execute:
 ```bash
 allure serve results
-``
-
+```
+### Contact Information 📬
+- 📧 nadiakoluzaeva@gmail.com
+- 📞 215 268 8878
+- 💬 [Мой Discord аккаунт](https://discord.com/users/nadia9022)
+- 🔗 [LinkedIn](https://www.linkedin.com/in/nadzeya-kaluzayeva/)
+- 📍 Philadelphia, 19116
