@@ -49,8 +49,7 @@
 VALID_EMAIL=your_email
 VALID_PASSWORD=your_password
 ```
-
-4. For use in tests or pages:
+3. For use in tests or pages:
 ```python
 import os
 from dotenv import load_dotenv
@@ -87,7 +86,6 @@ allure serve results
 ```
 ### Contact Information 📬
 - 📧 nadiakoluzaeva@gmail.com
-- 📞 215 268 8878
 - 💬 [Мой Discord аккаунт](https://discord.com/users/nadia9022)
 - 🔗 [LinkedIn](https://www.linkedin.com/in/nadzeya-kaluzayeva/)
 - 📍 Philadelphia, 19116
