@@ -94,9 +94,9 @@ class Header:
         wait = WebDriverWait(self.browser, 10)
         actual_link = wait.until(EC.element_to_be_clickable(self.actuals_link))
         actual_link.click()
-        dialog = wait.until(
-            EC.visibility_of_element_located((self.mui_dialog_close)))
-        dialog.click()
+        # dialog = wait.until(
+        #     EC.element_to_be_clickable((self.mui_dialog_close)))
+        # dialog.click()
         wait.until(EC.url_to_be(ACTUALS_URL))
         
 
