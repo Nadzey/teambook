@@ -33,13 +33,13 @@
    - [python-dotenv](https://pypi.org/project/python-dotenv/) для работы с файлами `.env`.
 
 ### Настройка `.gitignore` 🛑
-Добавьте следующие строки в `.gitignore`:
-add/shelf/
-workspace.xml
-.pyc
-.env
-.pytest_cache/
-pycache/
+- Добавьте следующие строки в `.gitignore`:
+- add/shelf/
+- workspace.xml
+- .pyc
+- .env
+- .pytest_cache/
+- pycache/
 
 
 ### Создание `.env` файла 🔒
@@ -54,16 +54,16 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-VALID_EMAIL = os.environ["VALID_EMAIL"]
-VALID_PASSWORD = os.environ["VALID_PASSWORD"]
+- VALID_EMAIL = os.environ["VALID_EMAIL"]
+- VALID_PASSWORD = os.environ["VALID_PASSWORD"]
 
-## GitHub Secrets 🔐
-Добавьте данные в GitHub Secrets:
+### GitHub Secrets 🔐
+- Добавьте данные в GitHub Secrets:
 
 1. Перейдите в `Settings > Secrets and Variables > Actions`.
 2. Создайте новый секрет репозитория.
 
-## Запуск Тестов 🚀
+### Запуск Тестов 🚀
 
 ### Локальный Запуск
 
@@ -77,7 +77,7 @@ VALID_PASSWORD = os.environ["VALID_PASSWORD"]
 - С отчетом: `pytest tests --alluredir results --headed`
 - Отдельный файл тестов: `pytest tests/test_header.py --headed`
 
-### Просмотр отчетов Allure 📊
+#### Просмотр отчетов Allure 📊
 Запустите:
 ```bash
 allure serve results
