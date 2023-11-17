@@ -6,3 +6,4 @@ class SettingsPageLocators:
     DELETE_BUTTON = (By.ID, 'delete-account-button')
     COMPANY_NAME_INPUT = (By.ID, 'name')
     DELETE_ACCOUNT_BUTTON = (By.ID, 'delete-account')
+    GETTING_STARTED_CLOSE = (By.XPATH, '//*[@id="root"]/div[2]/div/div[5]/div[2]/button')

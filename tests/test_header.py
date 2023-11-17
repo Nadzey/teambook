@@ -126,8 +126,6 @@ def test_organization_link_transfer_user_to_correct_URL(browser):
 # def test_help_menu_links_present(browser, knowledge_text, contact_us_text, roadmap_text, suggest_feature_text):
 #     # steps
 #     header = Header(browser, PLANNERS_URL)
-#     header.load()
-#     time.sleep(3)
 #     header.click_help_menu()
 #     help_menu = HelpMenu(browser, PLANNERS_URL)
 #     # Expected result

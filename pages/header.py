@@ -39,25 +39,29 @@ class Header:
         wait = WebDriverWait(self.browser, 10)
         header_logo = wait.until(EC.element_to_be_clickable(self.header_logo))
         header_logo.click()
-        time.sleep(3)
+        wait.until(EC.url_contains("planners"))
 
     def close_getting_started(self):
-        wait = WebDriverWait(self.browser, 10)
         self.browser.find_element(*self.getting_start).click()
 
     def user_menu(self):
-        wait = WebDriverWait(self.browser, 10)
         return self.browser.find_element(*self.user_menu1)
 
     def open_user_menu(self):
         wait = WebDriverWait(self.browser, 10)
-        user_menu_button = wait.until(EC.element_to_be_clickable(self.open_menu_button))
-        user_menu_button.click()
-        time.sleep(3)
+        user_menu_btn = wait.until(EC.element_to_be_clickable(self.open_menu_button))
+        user_menu_btn.click()
+        wait.until(EC.visibility_of_element_located(self.logout_button))
 
     def click_help_menu(self):
         wait = WebDriverWait(self.browser, 10)
         help_menu = wait.until(EC.element_to_be_clickable(self.help_menu))
+        self.browser.execute_script("""
+        var backdrops = document.querySelectorAll('#header-menu');
+        backdrops.forEach(function(backdrop) {
+            backdrop.style.display = 'none';
+        });
+        """)
         help_menu.click()
 
     def onboarding_header(self):
@@ -117,6 +121,12 @@ class Header:
     def open_help_menu(self):
         wait = WebDriverWait(self.browser, 10)
         element = wait.until(EC.element_to_be_clickable(self.help_menu))
+        self.browser.execute_script("""
+        var backdrops = document.querySelectorAll('#header-menu');
+        backdrops.forEach(function(backdrop) {
+            backdrop.style.display = 'none';
+        });
+        """)
         element.click()
 
     def verify_elements_present(self):
@@ -179,12 +189,18 @@ class UserMenu:
     def load(self):
         wait = WebDriverWait(self.browser, 10)
         self.browser.get(self.urls)
-        wait.until(EC.presence_of_element_located(self.user_menu))
+        wait.until(EC.presence_of_element_located(self.user_menu1))
 
     def organization_link_open(self):
         wait = WebDriverWait(self.browser, 10)
         self.header_instance.open_user_menu()
         organization = wait.until(EC.element_to_be_clickable(self.organization_link))
+        self.browser.execute_script("""
+        var backdrops = document.querySelectorAll('.MuiBackdrop-root');
+        backdrops.forEach(function(backdrop) {
+            backdrop.style.display = 'none';
+        });
+        """)
         organization.click()
         time.sleep(3)
 

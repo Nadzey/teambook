@@ -19,11 +19,21 @@ class SettingsPage:
         self.browser.get(self.url)
         wait.until(
             EC.presence_of_element_located(SettingsPageLocators.DELETE_ORGANIZATION_P))
+        
+    def close_getting_started(self):
+        wait = WebDriverWait(self.browser, 10)
+        close = wait.until(
+            EC.element_to_be_clickable(SettingsPageLocators.GETTING_STARTED_CLOSE))
+        close.click()
 
     def delete_company(self, company_name):
         wait = WebDriverWait(self.browser, 10)
-        self.browser.find_element(*self.delete_p).click()
-        self.browser.find_element(*self.delete_button).click()
+        deleteP = wait.until(
+            EC.element_to_be_clickable(SettingsPageLocators.DELETE_ORGANIZATION_P))
+        deleteP.click()
+        deleteButton = wait.until(EC.element_to_be_clickable(SettingsPageLocators.DELETE_BUTTON))
+        deleteButton.click()
         self.browser.find_element(*self.company_name_input).send_keys(company_name)
-        self.browser.find_element(*self.delete_account_button).click()
+        deleteAccountBtn = wait.until(EC.element_to_be_clickable(SettingsPageLocators.DELETE_ACCOUNT_BUTTON))
+        deleteAccountBtn.click()
         wait.until(EC.url_to_be(url=REGISTER_URL))
