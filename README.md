@@ -45,10 +45,12 @@
 ### Создание `.env` файла 🔒
 1. Создайте файл `.env` в корне проекта.
 2. Введите в него данные:
+```
 VALID_EMAIL=your_email
 VALID_PASSWORD=your_password
+```
 
-3. Для использования в тестах или страницах:
+4. Для использования в тестах или страницах:
 ```python
 import os
 from dotenv import load_dotenv
@@ -56,6 +58,7 @@ from dotenv import load_dotenv
 load_dotenv()
 - VALID_EMAIL = os.environ["VALID_EMAIL"]
 - VALID_PASSWORD = os.environ["VALID_PASSWORD"]
+```
 
 ### GitHub Secrets 🔐
 - Добавьте данные в GitHub Secrets:
@@ -68,17 +71,18 @@ load_dotenv()
 ### Локальный Запуск
 
 #### Headless режим (без GUI)
-- Без отчета: `pytest tests`
-- С отчетом: `pytest tests --alluredir results`
-- Отдельный файл тестов: `pytest tests/test_header.py`
+- Без отчета: ```pytest tests```
+- С отчетом: ```pytest tests --alluredir results```
+- Отдельный файл тестов: ```pytest tests/test_header.py```
 
 #### Headed режим (с GUI)
-- Без отчета: `pytest tests --headed`
-- С отчетом: `pytest tests --alluredir results --headed`
-- Отдельный файл тестов: `pytest tests/test_header.py --headed`
+- Без отчета: ```pytest tests --headed```
+- С отчетом: ```pytest tests --alluredir results --headed```
+- Отдельный файл тестов: ```pytest tests/test_header.py --headed```
 
 #### Просмотр отчетов Allure 📊
 Запустите:
 ```bash
 allure serve results
+``
 
